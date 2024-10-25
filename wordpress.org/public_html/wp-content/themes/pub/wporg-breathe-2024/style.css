@@ -796,6 +796,11 @@ input[type="submit"]:hover {
 	box-shadow: unset;
 }
 
+.tag-prefix,
+.mentions-prefix {
+	opacity: unset;
+}
+
 @media only screen and (max-width: 480px) {
 	body.responsive-show #wpadminbar {
 		top: 0;

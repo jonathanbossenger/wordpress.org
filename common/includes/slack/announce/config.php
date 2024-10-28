@@ -415,13 +415,6 @@ function get_whitelist() {
 			'psykro', // @Jonathan on Slack
 			'tellyworth',
 		),
-		'meta-playground' => array(
-			'akirk',
-			'bph',
-			'berislav.grgicak',
-			'bpayton',
-			'zieladam',
-		),
 		'meta-wordcamp' => $wordcamp_central,
 		'openverse' => array(
 			'aetherunbound', // @Madison Swain-Bowden on Slack
@@ -452,6 +445,13 @@ function get_whitelist() {
 			'topher1kenobe',
 			'katiejrichards',
 			'marcusskyverge',
+		),
+		'playground' => array(
+			'akirk',
+			'bph',
+			'berislav.grgicak',
+			'bpayton',
+			'zieladam',
 		),
 		'polyglots' => array(
 			'Amieiro',

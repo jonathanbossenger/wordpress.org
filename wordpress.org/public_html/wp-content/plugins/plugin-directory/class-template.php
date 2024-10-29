@@ -1083,6 +1083,19 @@ class Template {
 			'public'    => false,
 		];
 
+		/*
+		 * If the date is unknown, fallback to the last_updated time (then to post_modified_gmt, then to post_date_gmt..).
+		 *
+		 * This is not strictly correct, but the consistency in data is more important than the exact date, where the plugins
+		 * without the closed metadata are likely closed pre-2018.
+		 */
+		if ( ! $result['date'] ) {
+			$result['date'] = $post->last_updated ?: $post->post_modified_gmt;
+			if ( '0000-00-00 00:00:00' === $result['date'] ) {
+				$result['date'] = $post->post_date_gmt;
+			}
+		}
+
 		if (
 			'author-request' === $result['reason'] ||
 			! Tools::get_plugin_committers( $post->post_name )

@@ -203,6 +203,8 @@ function _maybe_add_login_item_to_menu( $menus ) {
 		return $menus;
 	}
 
+	global $wp;
+	$redirect_url = home_url( $wp->request );
 	$login_item = array(
 		'label' => __( 'Log in', 'wporg-breathe' ),
 		'url' => wp_login_url( $redirect_url ),

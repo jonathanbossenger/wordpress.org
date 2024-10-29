@@ -646,8 +646,8 @@ body.blog #secondary-content ul {
 	padding-left: unset;
 }
 
-#secondary-content a:not(.widget_wporg_handbook_pages a),
-#secondary-content a:hover {
+#secondary-content a:not(.widget_wporg_handbook_pages a):not(.wp-block-button__link),
+#secondary-content a:not(.wp-block-button__link):hover {
 	text-decoration: underline;
 }
 

@@ -88,7 +88,6 @@ class API_Update_Updater {
 				$meta['closed_at'] = $closed_data['date'] ? gmdate( 'Y-m-d', strtotime( $closed_data['date'] ) ) : false;
 				if ( $closed_data['public'] ) {
 					$meta['closed_reason'] = $closed_data['reason'] ?: 'unknown';
-					$meta['closed_label']  = $closed_data['label'];
 				}
 			}
 		}

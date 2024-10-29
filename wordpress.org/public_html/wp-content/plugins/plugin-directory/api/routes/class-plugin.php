@@ -61,7 +61,7 @@ class Plugin extends Base {
 				'slug'        => $post->post_name,
 				'description' => $close_text,
 				'closed'      => true,
-				'closed_date' => $close_data['date'] ?: false,
+				'closed_date' => $close_data['date'] ? gmdate( 'Y-m-d', strtotime( $close_data['date'] ) ) : false,
 				'reason'      => $close_data['public'] ? $close_data['reason'] : false,
 				'reason_text' => $close_data['public'] ? $close_data['label'] : false,
 			];

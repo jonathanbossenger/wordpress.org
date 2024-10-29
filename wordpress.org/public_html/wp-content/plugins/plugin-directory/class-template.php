@@ -1090,10 +1090,16 @@ class Template {
 			$result['permanent'] = true;
 		}
 
-		$result['label'] = self::get_close_reasons()[ $result['reason'] ] ?? _x( 'Unknown', 'unknown close reason', 'wporg-plugins' );
-		$days_closed     = $result['date'] ? (int) ( ( time() - strtotime( $result['date'] ) ) / DAY_IN_SECONDS ) : false;
+		$result['label'] = self::get_close_reasons()[ $result['reason'] ] ?? false;
+
+		// If not known reason, use 'unknown'.
+		if ( ! $result['label'] ) {
+			$result['reason'] = 'unknown';
+			$result['label']  = _x( 'Unknown', 'unknown close reason', 'wporg-plugins' );
+		}
 
 		// If it's closed for more than 60 days, it's by author request, or we're unsure about the close date, it's publicly known.
+		$days_closed = $result['date'] ? (int) ( ( time() - strtotime( $result['date'] ) ) / DAY_IN_SECONDS ) : false;
 		if ( ! $result['date'] || $days_closed >= 60 || 'author-request' === $result['reason'] ) {
 			$result['public'] = true;
 		}

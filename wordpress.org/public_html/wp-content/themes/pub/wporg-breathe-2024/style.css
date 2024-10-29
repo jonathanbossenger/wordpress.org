@@ -84,9 +84,12 @@ h4 {
 h1,
 h2,
 h3,
+.component .component-info h3,
 h4,
+h5,
+h6,
 .content-area h2 {
-	font-weight: 600;
+	font-weight: var(--wp--custom--heading--typography--font-weight);
 }
 
 .entry-content .reports.ticket-reports {
@@ -2324,4 +2327,3 @@ nav.handbook-navigation .nav-links a[rel="next"] {
 		border-right: 0;
 	}
 }
-

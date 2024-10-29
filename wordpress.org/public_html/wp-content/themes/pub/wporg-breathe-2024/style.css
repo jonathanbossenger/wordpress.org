@@ -1093,7 +1093,7 @@ article.post.tag-p2-xpost a.author-avatar img.avatar {
 }
  
 .o2-xpost-author {
-	margin: 5px 0 0 0;
+	font-size: inherit;
 }
 
 .o2-xpost-author a {
@@ -1707,21 +1707,32 @@ body.error404 {
 
 .team-contributor {
 	overflow: auto;
-	margin-bottom: 22px;
+	margin-bottom: var(--wp--style--block-gap);
+	display: grid;
+	grid-template-columns: 64px 1fr;
+	grid-template-rows: 2fr;
+	column-gap: 12px;
 }
 
 .team-contributor .avatar {
-	float: left;
-	margin-right: 20px;
+	margin-right: var(--wp--style--block-gap);
+	width: 64px;
+	height: 64px;
+	grid-row-start: 1;
+	grid-row-end: 3;
 }
 
 .contributor-name {
-	padding-top: 14px;
-	font-size: 1.2rem;
+	padding-top: 2px;
 }
 
 article.page p.contributor-name {
-	margin-bottom: 8px;
+	margin-bottom: 0;
+	font-weight: 600;
+}
+
+article.page p.contributor-bio {
+	font-size: var(--wp--preset--font-size--small);
 }
 
 

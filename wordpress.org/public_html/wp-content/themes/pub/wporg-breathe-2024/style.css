@@ -3,6 +3,7 @@
  * Template: p2-breathe
  * Description: Child theme of P2 Breathe, with modifications specifically for WordPress.org.
  * Supports Oxygen: true
+ * Version: 1.0.0
  */
 
 body {
@@ -929,6 +930,10 @@ input[type="submit"]:hover {
 	padding: 0;
 	text-transform: none;
 	color: inherit;
+}
+
+.home .o2-app-page-title {
+	display: none;
 }
 
 .o2-app-controls {

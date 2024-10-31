@@ -1438,6 +1438,7 @@ nav.o2-post-footer-actions ul li > span > a {
 	padding-right: var(--wp--custom--button--small--spacing--padding--right);
 	font-size: var(--wp--preset--font-size--small);
 	line-height: var(--wp--custom--button--typography--line-height);
+	border-radius: 4px;
 }
 
 nav.o2-post-footer-actions ul li > a:hover,
@@ -2356,4 +2357,13 @@ nav.handbook-navigation .nav-links a[rel="next"] {
 	.navigation .nav-older a {
 		border-right: 0;
 	}
+}
+
+/* Sharedaddy */
+.sharedaddy.sd-sharing-enabled {
+	margin-top: var(--wp--preset--spacing--40);
+}
+
+.wporg-make .sharedaddy h3.sd-title {
+	display: none;
 }

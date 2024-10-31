@@ -678,7 +678,11 @@ body.blog #secondary-content ul {
 
 li.o2-filter-widget-item a {
 	padding: unset;
-	margin-bottom: 5px;
+	margin-bottom: var(--wp--preset--spacing--10);
+}
+
+li.o2-filter-widget-item a:before {
+	display: none;
 }
 
 li.o2-filter-widget-item a:hover {
@@ -690,11 +694,6 @@ li.o2-filter-widget-item a.o2-filter-widget-selected {
 	background: unset;
 	font-weight: 600;
 	color: var(--wp--custom--link--color--text);
-}
-
-li.o2-filter-widget-item a:hover:before,
-li.o2-filter-widget-item a.o2-filter-widget-selected:before {
-	color: inherit;
 }
 
 .o2-live-comments-container p.o2-live-item-text {

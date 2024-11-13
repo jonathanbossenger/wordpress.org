@@ -1344,6 +1344,19 @@ function wporg_is_single_user_profile( bool $is_single_user_profile ) : bool {
 }
 add_filter( 'bbp_is_single_user_profile', 'wporg_is_single_user_profile' );
 
+/**
+ * Get the URL for the forums welcome page.
+ * Slug is translated, so the URL will be correct for the current locale.
+ *
+ * @return string
+ */
+function wporg_support_get_welcome_url() {
+	return site_url(
+		/* Translators: slug for the welcome page, e.g. 'welcome' will produce https://wordpress.org/support/welcome/ */
+		esc_html__( 'welcome', 'wporg-forums' )
+	);
+}
+
 
 /** bb Base *******************************************************************/
 

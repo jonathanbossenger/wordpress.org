@@ -9,6 +9,7 @@
  * Include locale specific styles.
  */
 require_once get_theme_root( 'wporg-parent-2021' ) . '/wporg-parent-2021/inc/rosetta-styles.php';
+require_once( __DIR__ . '/inc/block-config.php' );
 
 /**
  * Use the ‘Lead Topic’ uses the single topic part

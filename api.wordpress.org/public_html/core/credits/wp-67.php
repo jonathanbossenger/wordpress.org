@@ -268,6 +268,7 @@ class WP_67_Credits extends WP_Credits {
 			'digitalex11',
 			'dilip2615',
 			'dilipbheda',
+			'dimplemodi',
 			'divibanks',
 			'djcowan',
 			'djennez',

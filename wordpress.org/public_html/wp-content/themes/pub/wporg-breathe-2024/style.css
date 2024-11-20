@@ -124,8 +124,23 @@ td {
 	padding: 10px;
 }
 
-pre, code {
-	font-size: 0.9em;
+pre,
+code,
+.glossary-item-container {
+	background: var(--wp--preset--color--light-grey-2);
+	padding: 3px 0;
+}
+
+.glossary-item-container {
+	border-radius: unset;
+}
+
+pre,
+code {
+	font-size: inherit;
+	padding: 3px;
+	border-radius: 2px;
+	max-width: 100%;
 }
 
 pre code {

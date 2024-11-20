@@ -374,6 +374,7 @@ function get_whitelist() {
 			'amykamala', // @amy kamala on Slack
 			'brechtryckaert',
 			'brettface',
+			'zunaid321', // @Zunaid Amin on Slack
 		),
 		'marketing' => array(
 			'bernard0omnisend', // Bernard Meyer on Slack

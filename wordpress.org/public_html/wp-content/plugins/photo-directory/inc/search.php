@@ -127,7 +127,7 @@ class Search {
 		global $wpdb;
 
 		if ( self::is_search( $query ) ) {
-			$insert_at = strpos( $where, 'OR (' . $wpdb->prefix . 'posts.post_content LIKE ' );
+			$insert_at = strpos( $where, 'OR (' . $wpdb->prefix . 'posts.post_content REGEXP ' );
 			if ( $insert_at ) {
 				$or_tag = $wpdb->prepare( "OR
 					(

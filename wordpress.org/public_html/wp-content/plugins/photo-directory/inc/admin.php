@@ -810,7 +810,7 @@ class Admin {
 	public static function add_published_photos_count_to_author( $display_name ) {
 		global $authordata;
 
-		if ( ! is_admin() || ! self::should_include_photo_column() ) {
+		if ( ! is_admin() || ! self::should_include_photo_column( true ) ) {
 			return $display_name;
 		}
 

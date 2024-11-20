@@ -294,9 +294,10 @@ class Admin {
 	/**
 	 * Determines if the 'Photo' column should be added to a post listing table.
 	 *
+	 * @param bool $include_rejected Optional. Include the 'reject' post status? Default false.
 	 * @return bool True if the 'Photo' column should be added; else false.
 	 */
-	public static function should_include_photo_column() {
+	public static function should_include_photo_column( $include_rejected = false ) {
 		$screen = get_current_screen();
 		$post_type = Registrations::get_post_type();
 
@@ -307,6 +308,9 @@ class Admin {
 		];
 
 		$post_statuses = Photo::get_post_statuses_with_photo();
+		if ( $include_rejected ) {
+			$post_statuses[] = Rejection::get_post_status();
+		}
 
 		return (
 			// Screen is known.

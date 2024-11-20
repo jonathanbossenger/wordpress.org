@@ -343,6 +343,7 @@ add_action( 'wp_footer', __NAMESPACE__ . '\inline_scripts' );
 function welcome_box() {
 	$welcome      = get_page_by_path( 'welcome' );
 	$cookie       = 'welcome-' . get_current_blog_id();
+	$path         = get_blog_details()->path;
 	$hash         = isset( $_COOKIE[ $cookie ] ) ? $_COOKIE[ $cookie ] : '';
 	$content_hash = $welcome ? md5( $welcome->post_content ) : '';
 
@@ -376,12 +377,16 @@ function welcome_box() {
 		</div>
 		<div class="entry-content clear" id="make-welcome-content" data-cookie="<?php echo $cookie; ?>" data-hash="<?php echo $content_hash; ?>">
 			<script type="text/javascript">
-				var elContent = document.getElementById( 'make-welcome-content' );
+				const elContent = document.getElementById( 'make-welcome-content' );
+
 				if ( elContent ) {
-					if ( -1 !== document.cookie.indexOf( elContent.dataset.cookie + '=' + elContent.dataset.hash ) ) {
-						var elToggle = document.getElementById( 'make-welcome-toggle' ),
-							elEditLink = document.getElementsByClassName( 'make-welcome-edit-post-link' ),
-							elContainer = document.querySelector( '.make-welcome' );
+					const hasCookieSetToHidden = -1 !== document.cookie.indexOf( elContent.dataset.cookie + '=' + elContent.dataset.hash );
+					const isHome = window.location.pathname === '<?php echo esc_js( $path ); ?>';
+
+					if ( hasCookieSetToHidden || ! isHome ) {
+						const elToggle = document.getElementById( 'make-welcome-toggle' );
+						const elEditLink = document.getElementsByClassName( 'make-welcome-edit-post-link' );
+						const elContainer = document.querySelector( '.make-welcome' );
 
 						// It's hidden, hide it ASAP.
 						elContent.className += " hidden";

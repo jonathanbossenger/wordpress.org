@@ -827,7 +827,7 @@ class Admin {
 		. "</div>\n";
 
 		// Show number of photos approved on this calendar day.
-		$approved_today_count = User::count_published_photos_for_today();
+		$approved_today_count = User::count_photos_for_today( 'publish' );
 		if ( $approved_today_count ) {
 			$approved_today_link = add_query_arg( [
 				'post_type'   => Registrations::get_post_type(),

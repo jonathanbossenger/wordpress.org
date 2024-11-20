@@ -813,9 +813,12 @@ class Admin {
 		// Close link to contributor's listing of photos.
 		$display_name .= '</a>';
 
+		$post_type     = Registrations::get_post_type();
+		$reject_status = Rejection::get_post_status();
+
 		// Show number of approved photos.
 		$approved_link = add_query_arg( [
-			'post_type'   => Registrations::get_post_type(),
+			'post_type'   => $post_type,
 			'post_status' => 'publish',
 			'author'      => $authordata->ID,
 		], 'edit.php' );
@@ -830,7 +833,7 @@ class Admin {
 		$approved_today_count = User::count_photos_for_today( 'publish' );
 		if ( $approved_today_count ) {
 			$approved_today_link = add_query_arg( [
-				'post_type'   => Registrations::get_post_type(),
+				'post_type'   => $post_type,
 				'post_status' => 'publish',
 				'author'      => $authordata->ID,
 			], 'edit.php' );
@@ -846,7 +849,7 @@ class Admin {
 		$pending_count = User::count_pending_photos();
 		if ( $pending_count ) {
 			$pending_link = add_query_arg( [
-				'post_type'   => Registrations::get_post_type(),
+				'post_type'   => $post_type,
 				'post_status' => 'pending',
 				'author'      => $authordata->ID,
 			], 'edit.php' );
@@ -863,8 +866,8 @@ class Admin {
 		$rejection_count = User::count_rejected_photos( $authordata->ID );
 		if ( $rejection_count ) {
 			$rejected_link = add_query_arg( [
-				'post_type'   => Registrations::get_post_type(),
-				'post_status' => Rejection::get_post_status(),
+				'post_type'   => $post_type,
+				'post_status' => $reject_status,
 				'author'      => $authordata->ID,
 			], 'edit.php' );
 			$display_name .= '<div class="user-rejected-count">'
@@ -872,6 +875,22 @@ class Admin {
 					/* translators: %s: Count of user rejections linked to listing of their rejections. */
 					_n( 'Rejected: <strong>%s</strong>', 'Rejected: <strong>%s</strong>', $rejection_count, 'wporg-photos' ),
 					sprintf( '<a href="%s">%d</a>', $rejected_link, $rejection_count )
+				)
+				. "</div>\n";
+		}
+
+		// Show number of photos rejected on this calendar day.
+		$rejected_today_count = User::count_photos_for_today( $reject_status );
+		if ( $rejected_today_count ) {
+			$rejected_today_link = add_query_arg( [
+				'post_type'   => $post_type,
+				'post_status' => $reject_status,
+				'author'      => $authordata->ID,
+			], 'edit.php' );
+			$display_name .= '<div class="user-rejected-today-count">'
+				. sprintf(
+					__( '&#x21AA; (today): %s', 'wporg-photos' ),
+					sprintf( '<strong><a href="%s">%d</a></strong>', $rejected_today_link, $rejected_today_count )
 				)
 				. "</div>\n";
 		}

@@ -783,6 +783,10 @@ class Admin {
 			$shown_photos++;
 		}
 
+		if ( ! $shown_photos ) {
+			echo '<p>' . __( 'This contributor does not have any other submitted photos.', 'wporg-photos' ) . "</p>\n";
+		}
+
 		echo '</div>' . "\n";
 
 		if ( count( $recent_subs ) > $photos_in_grid ) {

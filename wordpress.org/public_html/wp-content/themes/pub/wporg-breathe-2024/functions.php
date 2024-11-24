@@ -171,19 +171,6 @@ function _merge_by_slug( ...$arrays ) {
 }
 
 /**
- * Register patterns from the patterns directory.
- */
-function wporg_breathe_register_patterns() {
-	$pattern_directory = new \DirectoryIterator( get_stylesheet_directory() . '/patterns/' );
-	foreach ( $pattern_directory as $file ) {
-		if ( $file->isFile() ) {
-			require $file->getPathname();
-		}
-	}
-}
-add_action( 'init', __NAMESPACE__ . '\wporg_breathe_register_patterns' );
-
-/**
  * Get the primary navigation menu object if it exists.
  */
 function wporg_breathe_get_local_nav_menu_object() {
@@ -690,3 +677,39 @@ function breathe_content_nav( $nav_id ) {
 	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 	<?php
 }
+
+/**
+ * Modify rendering of the site-title block.
+ * Insert the team icon before the anchor tag, if it exists.
+ * 
+ * On the project and updates sites, update the text and link so that in the local nav
+ * it appears as if pages from these sites belong to the home site, and not separate blogs.
+ */
+function modify_site_title_block( $block_content, $block ) {
+	ob_start();
+	do_action('wporg_breathe_before_name', 'front');
+	$icon = ob_get_clean();
+	
+	// Insert the icon inside the anchor tag, before the text
+	$block_content = preg_replace(
+		'/(<a\b[^>]*>)(.*?)(<\/a>)/',
+		'$1' . $icon . '$2$3',
+		$block_content
+	);
+	
+	$site = get_site();
+	// On the project and updates sites replace the link with a Make home page link
+	if ( '/project/' === $site->path || '/updates/' === $site->path ) {
+		$make_home_url = 'https://' . $site->domain;
+		$block_content = preg_replace( 
+			'/<a\b[^>]*>(.*?)<\/a>/',
+			'<a target="_self" rel="home" href="' . esc_url( $make_home_url ) . '">' . 
+			esc_html__( 'Make WordPress', 'wporg-breathe' ) . 
+			'</a>', 
+			$block_content 
+		);
+	}
+
+	return $block_content;
+}
+add_filter( 'render_block_core/site-title', __NAMESPACE__ . '\modify_site_title_block', 10, 2 );

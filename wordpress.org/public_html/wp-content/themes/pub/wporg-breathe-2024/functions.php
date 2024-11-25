@@ -229,9 +229,13 @@ function wporg_breathe_add_site_navigation_menus( $menus ) {
 
 	$menu = array_map(
 		function( $menu_item ) {
+			global $wp;
+			$is_current_page = trailingslashit( $menu_item->url ) === trailingslashit( home_url( $wp->request ) );
+
 			return array(
 				'label' => esc_html( $menu_item->title ),
-				'url' => esc_url( $menu_item->url )
+				'url' => esc_url( $menu_item->url ),
+				'className' => $is_current_page ? 'current-menu-item' : '',
 			);
 		},
 		// Limit local nav items to 6

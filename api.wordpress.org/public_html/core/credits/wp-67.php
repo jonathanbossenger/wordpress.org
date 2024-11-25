@@ -950,6 +950,7 @@ class WP_67_Credits extends WP_Credits {
 			[ 'jQuery.suggest', 'https://github.com/pvulgaris/jquery.suggest' ],
 			[ 'jQuery UI Touch Punch', 'https://github.com/furf/jquery-ui-touch-punch' ],
 			[ 'json2', 'https://github.com/douglascrockford/JSON-js' ],
+			[ 'LibFont', 'https://github.com/Pomax/lib-font' ],
 			[ 'Lodash', 'https://lodash.com/' ],
 			[ 'Masonry', 'https://masonry.desandro.com/' ],
 			[ 'MediaElement.js', 'https://www.mediaelementjs.com/' ],

@@ -238,6 +238,8 @@ class Favorites {
 		$favorites_user = get_query_var( self::QUERY_VAR_USER_FAVORITES );
 		if ( $favorites_user ) {
 			$new_template = locate_template( [ 'user-favorites.php' ] );
+			// Find a block template if there is one. Will fall back to the PHP template if none found.
+			$new_template = locate_block_template( $new_template, 'user-favorites', [ 'user-favorites.php' ] );
 			if ( $new_template ) {
 				// Even if no favorites were found, don't treat the request as a 404.
 				$wp_query->is_archive = true;

@@ -713,6 +713,7 @@ li.o2-filter-widget-item a.o2-filter-widget-selected {
 
 .o2-live-comments-container p.o2-live-item-text {
 	font-size: var(--wp--preset--font-size--small);
+	line-height: var(--wp--custom--body--short-text--typography--line-height);
 }
 
 .o2-live-comments-container span.entry-date {

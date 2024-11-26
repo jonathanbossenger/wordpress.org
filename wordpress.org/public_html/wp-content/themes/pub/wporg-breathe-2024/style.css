@@ -124,20 +124,45 @@ td {
 	padding: 10px;
 }
 
-pre,
-code,
-.glossary-item-container {
-	background: var(--wp--preset--color--light-grey-2);
-	padding: 3px 0;
+.tippy-tooltip {
+	padding: var(--wp--preset--spacing--20);
+	border-radius: 2px;
 }
 
 .glossary-item-container {
+	background: var(--wp--preset--color--light-grey-2);
+	padding: 3px 0;
 	border-radius: unset;
+}
+
+.glossary-item-header {
+	display: block;
+	color: var(--wp--preset--color--charcoal-1);
+	font-weight: var(--wp--custom--heading--typography--font-weight);
+	font-size: var(--wp--preset--font-size--heading-3);
+	margin-bottom: var(--wp--style--block-gap);
+}
+
+.glossary-item-description {
+	font-style: initial;
+	line-height: var(--wp--custom--body--small--typography--line-height);
+	color: var(--wp--preset--color--charcoal-1);
+}
+
+.glossary-item-description a:last-child {
+	display: block;
+	margin-top: var(--wp--style--block-gap);
+}
+
+.glossary-item-description a:hover,
+.glossary-item-description a:focus {
+	text-decoration: underline;
 }
 
 pre,
 code {
 	font-size: inherit;
+	background: var(--wp--preset--color--light-grey-2);
 	padding: 3px;
 	border-radius: 2px;
 	max-width: 100%;

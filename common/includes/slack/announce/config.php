@@ -366,6 +366,7 @@ function get_whitelist() {
 		),
 		'hosting' => array(
 			'andrew.taylor', // @ataylorme on Slack
+			'chaion07',
 			'Crixu',
 			'kirasong',
 			'jadonn',

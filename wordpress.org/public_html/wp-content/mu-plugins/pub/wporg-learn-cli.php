@@ -16,6 +16,9 @@ class WPORG_Learn_Tutorial_To_Lesson_Command extends WP_CLI_Command {
 	 * <source>
 	 * : The URL of the tutorial post to convert, or path to a file containing URLs (one per line)
 	 *
+	 * [<blog_id>]
+	 * : The ID of the blog to switch to (default: 7 for learn.wordpress.org)
+	 *
 	 * [--live]
 	 * : Actually perform the conversion (default is dry-run)
 	 *
@@ -25,11 +28,13 @@ class WPORG_Learn_Tutorial_To_Lesson_Command extends WP_CLI_Command {
 	 * ## EXAMPLES
 	 *
 	 * wp wporg-learn convert-tutorial-to-lesson https://learn.wordpress.org/tutorial/slug
+	 * wp wporg-learn convert-tutorial-to-lesson https://learn.wordpress.org/tutorial/slug 696
 	 * wp wporg-learn convert-tutorial-to-lesson urls.txt --file
-	 * wp wporg-learn convert-tutorial-to-lesson urls.txt --file --live
+	 * wp wporg-learn convert-tutorial-to-lesson urls.txt 696 --file --live
 	 */
 	public function __invoke( $args, $assoc_args ) {
 		$source = $args[0];
+		$blog_id = isset( $args[1] ) ? (int) $args[1] : 7;
 		$is_dry_run = ! isset( $assoc_args['live'] );
 		$is_file = isset( $assoc_args['file'] );
 
@@ -50,41 +55,43 @@ class WPORG_Learn_Tutorial_To_Lesson_Command extends WP_CLI_Command {
 				continue;
 			}
 
-			// Process each URL
-			$this->process_url( $url, $is_dry_run );
+			// Process each URL with blog_id
+			$this->process_url( $url, $is_dry_run, $blog_id );
 		}
 	}
 
 	/**
 	 * Process a single URL.
 	 */
-	private function process_url( $url, $is_dry_run ) {
-		// Get post ID from URL
-		$post_id = url_to_postid( $url );
+	private function process_url( $url, $is_dry_run, $blog_id ) {
+		// Switch to the specified blog
+		switch_to_blog( $blog_id );
 
-		if ( ! $post_id ) {
-			WP_CLI::warning( "No post found for URL: $url" );
-			return;
-		}
+		// Extract the slug from the URL
+		$path = parse_url( $url, PHP_URL_PATH );
+		$slug = basename( untrailingslashit( $path ) );
 
-		$post = get_post( $post_id );
+		WP_CLI::line( "Slug: $slug" );
+
+		// Get post by slug
+		$post = get_page_by_path( $slug, OBJECT, 'wporg_workshop' );
 
 		if ( ! $post ) {
-			WP_CLI::warning( "Could not retrieve post with ID: $post_id" );
+			restore_current_blog();
+			WP_CLI::warning( "No tutorial found with slug: $slug (URL: $url)" );
 			return;
 		}
 
-		if ( 'wporg_workshop' !== $post->post_type ) {
-			WP_CLI::warning( "Post is not a tutorial (Post ID: $post_id)" );
-			return;
-		}
+		$post_id = $post->ID;
 
 		if ( 'lesson' === $post->post_type ) {
+			restore_current_blog();
 			WP_CLI::warning( "Post is already a lesson (Post ID: $post_id)" );
 			return;
 		}
 
 		if ( $is_dry_run ) {
+			restore_current_blog();
 			WP_CLI::line( sprintf(
 				"Dry run for:\nURL: %s\nTitle: %s\nPost ID: %d\nPost Type: %s\n---------------",
 				$url,
@@ -102,10 +109,12 @@ class WPORG_Learn_Tutorial_To_Lesson_Command extends WP_CLI_Command {
 		) );
 
 		if ( is_wp_error( $updated ) ) {
+			restore_current_blog();
 			WP_CLI::warning( 'Failed to update post type: ' . $updated->get_error_message() );
 			return;
 		}
 
+		restore_current_blog();
 		WP_CLI::success( "Successfully converted tutorial to lesson (Post ID: $post_id)" );
 	}
 }

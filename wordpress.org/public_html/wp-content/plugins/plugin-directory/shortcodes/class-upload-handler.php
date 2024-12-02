@@ -679,18 +679,47 @@ class Upload_Handler {
 
 		// Run plugin check via CLI
 		$start_time = microtime(1);
-		exec(
-			'export WP_CLI_CONFIG_PATH=' . escapeshellarg( WP_CLI_CONFIG_PATH ) . '; ' .
-			'timeout 45 ' . // Timeout after 45s if plugin-check is not done.
-			WPCLI . ' --url=https://wordpress.org/plugins ' .
-			'plugin check ' .
-			'--error-severity=7 --warning-severity=6 --categories=plugin_repo --format=json ' .
-			'--slug=' . escapeshellarg( $this->plugin_slug ) . ' ' .
-			escapeshellarg( $this->plugin_root ),
-			$output,
-			$return_code
+		$env_vars   = [
+			'PATH'               => $_ENV['PATH'] ?? '/usr/local/bin:/usr/bin:/bin',
+			'WP_CLI_CONFIG_PATH' => WP_CLI_CONFIG_PATH,
+		];
+		$command    = WPCLI . ' --url=https://wordpress.org/plugins ' .
+		              'plugin check ' .
+		              '--error-severity=7 --warning-severity=6 --categories=plugin_repo --format=json ' .
+		              '--slug=' . escapeshellarg( $this->plugin_slug ) . ' ' .
+		              escapeshellarg( $this->plugin_root );
+
+		$plugin_check_process = proc_open(
+			$command,
+			[
+				1 => [ 'pipe', 'w' ], // STDOUT
+				2 => [ 'pipe', 'w' ], // STDERR
+			],
+			$pipes,
+			null,
+			$env_vars
 		);
-		$total_time = round( microtime(1) - $start_time, 1 );
+		do {
+			usleep( 100000 ); // 0.1s
+
+			$total_time = round( microtime(1) - $start_time, 1 );
+
+			$proc_status = proc_get_status( $plugin_check_process );
+			$return_code = $proc_status['exitcode'] ?? 1;
+
+			if ( $total_time >= 45 && $proc_status['running'] ) {
+				// Terminate it.
+				proc_terminate( $plugin_check_process );
+			}
+		} while ( $proc_status['running'] && $total_time <= 60 ); // 60s max, just in case.
+
+		$output = explode( "\n", stream_get_contents( $pipes[1] ) );
+		$stderr = rtrim( stream_get_contents( $pipes[2] ) );
+
+		// Close the process.
+		fclose( $pipes[1] );
+		fclose( $pipes[2] );
+		fclose( $plugin_check_process );
 
 		/**
 		 * Anything that plugin-check outputs that we want to discard completely.
@@ -814,7 +843,8 @@ class Upload_Handler {
 		} elseif ( $return_code ) {
 			// Log plugin-check timing out.
 			$zip_name   = reset( $_FILES )['name'];
-			$text       = ":rotating_light: Error: {$return_code} for {$zip_name}: {$this->plugin['Name']} ({$this->plugin_slug}) took {$total_time}s\n";
+			$output     = implode( "\n", $output );
+			$text       = ":rotating_light: Error: {$return_code} for {$zip_name}: {$this->plugin['Name']} ({$this->plugin_slug}) took {$total_time}s\n```{$stderr}\n===\n{$output}```";
 			notify_slack( PLUGIN_CHECK_LOGS_SLACK_CHANNEL, $text, wp_get_current_user(), true );
 		}
 

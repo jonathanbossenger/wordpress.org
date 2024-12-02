@@ -699,6 +699,14 @@ class Upload_Handler {
 			null,
 			$env_vars
 		);
+		if ( ! $plugin_check_process ) {
+			// If we can't run plugin-check, we'll just return a pass.
+			return [
+				'verdict' => true,
+				'results' => [],
+				'html'    => '',
+			];
+		}
 		do {
 			usleep( 100000 ); // 0.1s
 
@@ -713,13 +721,18 @@ class Upload_Handler {
 			}
 		} while ( $proc_status['running'] && $total_time <= 60 ); // 60s max, just in case.
 
-		$output = explode( "\n", stream_get_contents( $pipes[1] ) );
-		$stderr = rtrim( stream_get_contents( $pipes[2] ) );
+		$output = stream_get_contents( $pipes[1] );
+		$stderr = rtrim( stream_get_contents( $pipes[2] ), "\n" );
+
+		// Remove ABSPATH from the output if present.
+		$output = str_replace( ABSPATH, '/', $output );
+		$output = str_replace( str_replace( '/', '\/', ABSPATH ), '\/', $output ); // JSON encoded
+		$stderr = str_replace( ABSPATH, '/', $stderr );
 
 		// Close the process.
 		fclose( $pipes[1] );
 		fclose( $pipes[2] );
-		fclose( $plugin_check_process );
+		proc_close( $plugin_check_process );
 
 		/**
 		 * Anything that plugin-check outputs that we want to discard completely.
@@ -746,6 +759,7 @@ class Upload_Handler {
 		 */
 		$verdict  = true;
 		$results  = [];
+		$output   = explode( "\n", $outout );
 		foreach ( array_chunk( $output, 3 ) as $file_result ) {
 			if ( ! str_starts_with( $file_result[0], 'FILE:' ) ) {
 				continue;

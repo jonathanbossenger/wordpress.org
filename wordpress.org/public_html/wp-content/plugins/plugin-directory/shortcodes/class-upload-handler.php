@@ -759,7 +759,7 @@ class Upload_Handler {
 		 */
 		$verdict  = true;
 		$results  = [];
-		$output   = explode( "\n", $outout );
+		$output   = explode( "\n", $output );
 		foreach ( array_chunk( $output, 3 ) as $file_result ) {
 			if ( ! str_starts_with( $file_result[0], 'FILE:' ) ) {
 				continue;

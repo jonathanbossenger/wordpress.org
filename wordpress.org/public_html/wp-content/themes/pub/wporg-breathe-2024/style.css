@@ -1542,15 +1542,17 @@ nav.o2-post-footer-actions ul li > span > a.genericon:before {
 }
 
 #o2-dock #o2-items-scroll {
-	border-top: 1px solid var(--wp--custom--color--border);
+	border-color: var(--wp--custom--color--border);
+	border-width: 1px 1px 0;
 }
 
 #o2-dock .o2-dock-items {
-	border-color: var(--wp--custom--color--border);
-	border-top: none;
+	border: none;
 }
 
 #o2-dock .o2-dock-items li.o2-notification {
+	margin-top: var(--wp--preset--spacing--10);
+	padding: 0 var(--wp--preset--spacing--10);
 	color: var(--wp--preset--color--charcoal-1);
 	font-family: inherit;
 	font-size: var(--wp--preset--font-size--small);

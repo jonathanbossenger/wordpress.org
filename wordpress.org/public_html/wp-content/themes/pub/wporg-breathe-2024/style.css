@@ -31,7 +31,7 @@ a[href^="https://wordpress.slack.com"]::before {
 }
 
 /* Override the Open Sans font for o2 plugin UI elements, and set to use the body font */
-[class*="o2"]:not(body) {
+[class*="o2"]:not(body):not(.o2-notification-close) {
 	font-family: inherit !important;
 }
 /* The rule above can set Genericon wrappers to the body font, so set the actual icon element to the correct font */

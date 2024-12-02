@@ -976,16 +976,7 @@ article#post-new {
 article.post .o2-post,
 article#post-new .o2-post,
 article.page .o2-post {
-	padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
-}
-
-@media screen and (max-width: 640px) {
-	article.post .o2-post:not(.sticky .o2-post):not(.state-resolved .o2-post):not(.state-unresolved .o2-post),
-	article#post-new .o2-post,
-	article.page .o2-post {
-		padding-left: unset;
-		padding-right: unset;
-	}
+	padding: var(--wp--preset--spacing--50) 0 var(--wp--preset--spacing--20);
 }
 
 article.post .o2-post .more-link {
@@ -1039,7 +1030,7 @@ article.handbook .entry-meta {
 	border-top: unset;
 }
 
-.single-post article.post .o2-post {
+.single-post article.post:not(.sticky):not(.state-resolved):not(.state-unresolved) .o2-post {
 	padding-top: unset;
 }
 
@@ -1246,7 +1237,7 @@ body > a.grav-tilt-parent {
 
 article.state-resolved .o2-post,
 article.state-unresolved .o2-post {
-	padding-top: 40px;
+	padding: 40px var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
 }
 
 article.state-resolved:not(.status-private),
@@ -1278,7 +1269,7 @@ article.state-unresolved:not(.status-private):before {
 	border: 0;
 	border-top: none;
 	background: var(--wp--preset--color--blueberry-4);
-	padding-top: 40px !important;
+	padding: 40px var(--wp--preset--spacing--20) var(--wp--preset--spacing--20);
 	position: relative;
 }
 

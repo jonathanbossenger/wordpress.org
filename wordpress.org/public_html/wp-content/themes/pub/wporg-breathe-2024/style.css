@@ -1532,6 +1532,53 @@ nav.o2-post-footer-actions ul li > span > a.genericon:before {
 	}
 }
 
+/*
+ * o2 Notifications
+ */
+
+#o2-dock {
+	@media (min-width: 877px) {
+		right: var(--wp--preset--spacing--edge-space);
+	}
+}
+
+#o2-dock .o2-dock-count {
+	font-weight: 600;
+	border: none;
+	background-color: var(--wp--preset--color--blueberry-1);
+	margin-bottom: -1px;
+	padding: var(--wp--preset--spacing--10) 15px;
+}
+
+#o2-dock #o2-items-scroll {
+	border-top: 1px solid var(--wp--custom--color--border);
+}
+
+#o2-dock .o2-dock-items {
+	border-color: var(--wp--custom--color--border);
+	border-top: none;
+}
+
+#o2-dock .o2-dock-items li.o2-notification {
+	color: var(--wp--preset--color--charcoal-1);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+#o2-dock .o2-dock-items li.o2-notification a {
+	color: var(--wp--custom--link--color--text);
+}
+
+#o2-dock #o2-dock-controls {
+	border-color: var(--wp--custom--color--border);
+	font-family: inherit;
+	color: var(--wp--custom--link--color--text);
+}
+
+/*
+ * Make Welcome
+ */
+
 .make-welcome {
 	background: var(--wp--preset--color--light-grey-2);
 	padding: 2em 0;

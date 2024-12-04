@@ -51,6 +51,34 @@ class User {
 	 * Initializes class.
 	 */
 	public static function init() {
+		// Show empty state page for users without contributed photos.
+		add_action( 'template_redirect', [ __CLASS__, 'allow_empty_authors' ] );
+	}
+
+	/**
+	 * Allows the author template to load for users who have not contributed any photos.
+	 */
+	public static function allow_empty_authors() {
+		global $wp_query;
+
+		if ( is_404() && get_query_var( 'author' ) ) {
+			$author_id = get_query_var( 'author' );
+			if ( ! $author_id ) {
+				return;
+			}
+
+			$authordata= get_userdata( $author_id );
+			if ( ! $authordata ) {
+				return;
+			}
+
+			$wp_query->is_author = true;
+			$wp_query->is_archive = true;
+			$wp_query->is_404 = false;
+
+			// Set global authordata variable to allow use of core user template functions.
+			$GLOBALS['authordata'] = $authordata;
+		}
 	}
 
 	/**

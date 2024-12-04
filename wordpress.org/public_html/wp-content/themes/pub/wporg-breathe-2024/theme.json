@@ -109,6 +109,15 @@
 			"contentSize": "960px",
 			"wideSize": "1320px"
 		},
+		"spacing": {
+			"spacingSizes": [
+				{
+					"name": "4X-Small",
+					"slug": "5",
+					"size": "5px"
+				}
+			]
+		},
 		"typography": {
 			"fontSizes": [
 				{

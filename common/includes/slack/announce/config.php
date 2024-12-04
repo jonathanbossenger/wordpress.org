@@ -368,6 +368,7 @@ function get_whitelist() {
 			'andrew.taylor', // @ataylorme on Slack
 			'chaion07',
 			'Crixu',
+			'grafruessel',
 			'kirasong',
 			'jadonn',
 			'JavierCasares',

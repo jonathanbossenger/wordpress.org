@@ -52,33 +52,31 @@ class User {
 	 */
 	public static function init() {
 		// Show empty state page for users without contributed photos.
-		add_action( 'template_redirect', [ __CLASS__, 'allow_empty_authors' ] );
+		add_action( 'pre_handle_404', [ __CLASS__, 'prevent_author_404s' ], 10, 2 );
 	}
 
 	/**
-	 * Allows the author template to load for users who have not contributed any photos.
+	 * Prevents 404s for all author pages.
+	 *
+	 * By default, core will only prevent 404s on empty author archives
+	 * if the author is a member of the site. This preempts the handler
+	 * to prevent 404s for all author pages.
+	 *
+	 * @param bool     $preempt  Whether to short-circuit default header status handling. Default false.
+	 * @param WP_Query $query WordPress Query object.
+	 * @return bool
 	 */
-	public static function allow_empty_authors() {
-		global $wp_query;
-
-		if ( is_404() && get_query_var( 'author' ) ) {
-			$author_id = get_query_var( 'author' );
-			if ( ! $author_id ) {
-				return;
-			}
-
-			$authordata= get_userdata( $author_id );
-			if ( ! $authordata ) {
-				return;
-			}
-
-			$wp_query->is_author = true;
-			$wp_query->is_archive = true;
-			$wp_query->is_404 = false;
-
-			// Set global authordata variable to allow use of core user template functions.
-			$GLOBALS['authordata'] = $authordata;
+	public static function prevent_author_404s( $preempt, $query ) {
+		if ( ! $query->is_main_query() ) {
+			return $preempt;
 		}
+
+		$author = $query->get( 'author' );
+		if ( $query->is_author && is_numeric( $author ) && $author > 0 ) {
+			return true;
+		}
+
+		return $preempt;
 	}
 
 	/**

@@ -2595,6 +2595,7 @@ nav.handbook-navigation .nav-links a[rel="next"] {
 .tippy-tooltip {
 	padding: var(--wp--preset--spacing--20);
 	border-radius: 2px;
+	text-align: start;
 }
 
 .glossary-item-container {

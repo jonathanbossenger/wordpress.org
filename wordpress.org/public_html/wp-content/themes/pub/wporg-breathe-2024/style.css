@@ -2629,8 +2629,8 @@ nav.handbook-navigation .nav-links a[rel="next"] {
 .glossary-item-header {
 	display: block;
 	color: var(--wp--preset--color--charcoal-1);
-	font-weight: var(--wp--custom--heading--typography--font-weight);
-	font-size: var(--wp--preset--font-size--heading-3);
+	font-weight: 600;
+	font-size: var(--wp--preset--font-size--heading-4);
 	margin-bottom: var(--wp--style--block-gap);
 }
 

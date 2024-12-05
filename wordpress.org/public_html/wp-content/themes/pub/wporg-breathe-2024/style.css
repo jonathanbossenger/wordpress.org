@@ -446,6 +446,7 @@ body.make-hosting #headline h2 a:before { content: '\f176'; }
 .o2-editor .o2-editor-wrapper,
 #respond .o2-editor .o2-editor-wrapper {
 	border-radius: 2px;
+	border-end-start-radius: 0;
 	border: var(--wp--custom--form--border--width) var(--wp--custom--form--border--style) var(--wp--custom--form--border--color);
 	overflow: hidden;
 }
@@ -456,19 +457,38 @@ body.make-hosting #headline h2 a:before { content: '\f176'; }
 }
 
 .o2-editor .o2-editor-footer .o2-editor-tabs li {
+	position: relative;
 	border: 1px solid var(--wp--custom--form--border--color);
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
-	overflow: hidden;
+	border-end-start-radius: 2px;
+	border-end-end-radius: 2px;
 }
 
 .o2-editor .o2-editor-footer .o2-editor-tabs li:first-of-type,
 #respond .o2-editor-footer .o2-editor-tabs li:first-of-type {
-	border-left: 1px solid var(--wp--custom--form--border--color);
-	border-top: 1px solid var(--wp--custom--form--border--color);
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
+	border: 1px solid var(--wp--custom--form--border--color);
+	border-end-start-radius: 2px;
+	border-end-end-radius: 2px;
 	margin-inline-end: -1px;
+}
+
+.o2-editor .o2-editor-footer .o2-editor-tabs li.selected::before,
+#respond .o2-editor-footer .o2-editor-tabs li.selected::before,
+.o2-editor .o2-editor-footer .o2-editor-tabs li.selected::after,
+#respond .o2-editor-footer .o2-editor-tabs li.selected::after {
+	display: block;
+	content: '';
+	position: absolute;
+	inset-inline-start: -1px;
+	inset-block-start: -1px;
+	width: 1px;
+	height: 1px;
+	background: var(--wp--custom--form--border--color);
+}
+
+.o2-editor .o2-editor-footer .o2-editor-tabs li.selected::after,
+#respond .o2-editor-footer .o2-editor-tabs li.selected::after {
+	inset-inline-start: unset;
+	inset-inline-end: -1px;
 }
 
 .o2-editor .o2-editor-footer .o2-editor-tabs li.selected,
@@ -480,7 +500,8 @@ body.make-hosting #headline h2 a:before { content: '\f176'; }
 	background: var(--wp--preset--color--light-grey-2);
 	border: unset;
 	font-size: var(--wp--preset--font-size--small);
-	border-radius: unset;
+	border-end-start-radius: 1px;
+	border-end-end-radius: 1px;
 }
 
 .o2-editor .o2-editor-footer .o2-editor-tabs li.selected a {
@@ -873,6 +894,13 @@ input[type="submit"]:hover {
 		-webkit-backface-visibility: initial;
 	}
 
+	#secondary {
+		top: var(--wp-admin--admin-bar--height, 0px);
+		z-index: 500;
+		left: unset;
+		inset-inline-start: -100%;
+	}
+
 	body.responsive-show {
 		overflow-y: hidden;
 		position: fixed !important;
@@ -884,6 +912,10 @@ input[type="submit"]:hover {
 		clear: left;
 		overflow: auto;
 		margin-bottom: 1em;
+	}
+
+	body.responsive-show #secondary {
+		inset-inline-start: 0;
 	}
 
 	body.responsive-show #secondary-content .navigation-main {
@@ -903,20 +935,16 @@ input[type="submit"]:hover {
 		overflow-x: visible;
 	}
 
-	#secondary {
-		top: var(--wp-admin--admin-bar--height, 0px);
-		z-index: 500;
-	}
-
 	#secondary-toggle {
-		margin-left: var(--wp--preset--spacing--edge-space);
-		margin-right: 0;
+		float: inline-start;
+		margin-right: unset;
 		margin-top: -12px;
+		text-align: end;
 	}
 
 	#main #secondary-toggle {
-		margin-left: 4px;
-		margin-right: var(--wp--style--block-gap);
+		margin-inline-start: 4px;
+		margin-inline-end: var(--wp--style--block-gap);
 		margin-top: 20px;
 	}
 
@@ -1403,7 +1431,7 @@ article.state-unresolved:not(.status-private) {
 	border: 1px solid var(--wp--custom--color--border);
 	border-left-width: 0;
 	border-top-right-radius: 2px;
-	border-bottom-right-radius: 2px;
+	border-end-end-radius: 2px;
 }
 
 /* Adjust to align with border */
@@ -1807,7 +1835,6 @@ nav.o2-post-footer-actions ul li > span > a.genericon:before {
 	outline: thin dotted;
 }
 
-[dir="rtl"] .make-welcome #make-welcome-toggle::before,
 .make-welcome #make-welcome-toggle::after {
 	content: "\f343";
 	font-family: dashicons;
@@ -1816,11 +1843,6 @@ nav.o2-post-footer-actions ul li > span > a.genericon:before {
 	overflow: auto;
 }
 
-[dir="rtl"] .make-welcome #make-welcome-toggle::after {
-	display: none;
-}
-
-[dir="rtl"] .make-welcome.collapsed #make-welcome-toggle::before,
 .make-welcome.collapsed #make-welcome-toggle::after {
 	content: "\f347";
 }

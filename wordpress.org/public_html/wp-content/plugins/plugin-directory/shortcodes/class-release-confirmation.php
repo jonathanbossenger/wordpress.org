@@ -280,6 +280,17 @@ class Release_Confirmation {
 					__( 'Confirmed', 'wporg-plugins' )
 				);
 			}
+		} elseif (
+			$data['discarded'] &&
+			current_user_can( 'plugin_review' ) &&
+			( time() - $data['discarded']['time'] ) < 2 * DAY_IN_SECONDS
+		) {
+			// Plugin reviewers can undo a discard within 48hrs.
+			$buttons[] = sprintf(
+				'<a href="%s" class="button undo-discard button-secondary">%s</a>',
+				Template::get_release_confirmation_link( $data['tag'], $plugin, 'undo-discard' ),
+				__( 'Undo Discard', 'wporg-plugins' )
+			);
 		}
 
 		return implode( ' ', $buttons );

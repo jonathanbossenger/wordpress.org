@@ -254,29 +254,29 @@ class Release_Confirmation {
 					current_user_can( 'plugin_manage_releases', $plugin  )
 				) {
 					$buttons[] = sprintf(
-						'<a href="%s" class="button approve-release button-primary">%s</a>',
+						'<a href="%s" class="wp-element-button button approve-release">%s</a>',
 						Template::get_release_confirmation_link( $data['tag'], $plugin ),
 						__( 'Confirm', 'wporg-plugins' )
 					);
 					$buttons[] = sprintf(
-						'<a href="%s" class="button approve-release button-secondary">%s</a>',
+						'<a href="%s" class="wp-element-button button approve-release">%s</a>',
 						Template::get_release_confirmation_link( $data['tag'], $plugin, 'discard' ),
 						__( 'Discard', 'wporg-plugins' )
 					);
 				} else {
 					$buttons[] = sprintf(
-						'<a class="button approve-release button-secondary disabled">%s</a>',
+						'<a class="wp-element-button button approve-release disabled">%s</a>',
 						__( 'Confirm', 'wporg-plugins' )
 					);
 					$buttons[] = sprintf(
-						'<a class="button approve-release button-secondary disabled">%s</a>',
+						'<a class="wp-element-button button approve-release disabled">%s</a>',
 						__( 'Discard', 'wporg-plugins' )
 					);
 				}
 
 			} elseif ( $current_user_confirmed ) {
 				$buttons[] = sprintf(
-					'<a class="button approve-release button-secondary disabled">%s</a>',
+					'<a class="wp-element-button button approve-release disabled">%s</a>',
 					__( 'Confirmed', 'wporg-plugins' )
 				);
 			}
@@ -287,7 +287,7 @@ class Release_Confirmation {
 		) {
 			// Plugin reviewers can undo a discard within 48hrs.
 			$buttons[] = sprintf(
-				'<a href="%s" class="button undo-discard button-secondary">%s</a>',
+				'<a href="%s" class="wp-element-button button undo-discard">%s</a>',
 				Template::get_release_confirmation_link( $data['tag'], $plugin, 'undo-discard' ),
 				__( 'Undo Discard', 'wporg-plugins' )
 			);

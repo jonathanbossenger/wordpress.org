@@ -52,6 +52,9 @@ ol,
 }
 
 p,
+article.post p,
+article#post-new p,
+article.page p,
 ul,
 ol,
 h1,

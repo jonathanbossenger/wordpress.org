@@ -421,7 +421,8 @@ body.make-hosting #headline h2 a:before { content: '\f176'; }
 
 /* Adjustments for teams with SVG icons. */
 .wporg-make.make-openverse .wp-block-site-title a::before,
-.wporg-make.make-performance .wp-block-site-title a::before {
+.wporg-make.make-performance .wp-block-site-title a::before,
+.wporg-make.make-playground .wp-block-site-title a::before {
 	display: none;
 }
 
@@ -430,6 +431,11 @@ body.make-hosting #headline h2 a:before { content: '\f176'; }
 	width: 24px;
 	vertical-align: middle;
 	margin-inline-end: 9px;
+}
+
+.wporg-make.make-playground .wp-block-site-title svg {
+	height: 18px;
+	width: 18px;
 }
 
 /* Post form */

@@ -74,7 +74,7 @@ function wporg_themes_render_upload_shortcode() {
 		<form enctype="multipart/form-data" id="upload_form" method="POST" action="" onsubmit="jQuery(\'#upload_button\').attr(\'disabled\',\'disabled\'); return true;">
 			' . wp_nonce_field( 'wporg-themes-upload', '_wpnonce', true, false ) . '
 			<input type="hidden" name="action" value="upload"/>
-			<input type="file" id="zip_file" name="zip_file" size="25"/>
+			<input type="file" id="zip_file" name="zip_file" size="25" accept=".zip" required />
 			<p>
 				<small>' . sprintf( __( 'Maximum allowed file size: %s', 'wporg-themes' ), esc_html( size_format( wp_max_upload_size() ) ) ) . '</small>
 			</p>

@@ -945,7 +945,7 @@ class Uploads {
 				$content .= "</div>\n"; // End upload-checkbox-wrapper.
 
 				$content .= sprintf(
-					'[input type="submit" class="button-primary" value="%s"]' . "\n",
+					'[input type="submit" class="button-primary wp-block-button__link wp-element-button" value="%s"]' . "\n",
 					esc_attr( __( 'Submit', 'wporg-photos' ) )
 				)
 				. '[recaptcha]' . "\n";

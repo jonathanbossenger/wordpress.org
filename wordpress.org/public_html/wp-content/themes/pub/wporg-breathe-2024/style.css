@@ -72,12 +72,6 @@ ol ul {
 	font-size: inherit;
 }
 
-.rtl ul,
-.rtl ol {
-	margin-left: 0;
-	margin-right: 25px;
-}
-
 h1,
 h2,
 h3,
@@ -174,6 +168,14 @@ tr:last-of-type td {
 	left: 0;
 }
 
+@media (max-width: 876px) {
+	.content-area table {
+		display: block;
+		max-width: fit-content;
+		overflow-x: auto;
+	}
+}
+
 /*
 * Block styles
 */
@@ -194,6 +196,15 @@ tr:last-of-type td {
 .sticky .wp-block-table.is-style-stripes thead tr,
 .sticky .wp-block-table.is-style-stripes tbody tr:nth-child(even) {
 	background-color: color-mix( in srgb, currentColor 7%, transparent );
+}
+
+/* TODO: This should be handled by RTL CSS in mu-plugins */
+[dir="rtl"] .wp-block-wporg-local-navigation-bar {
+	padding-right: var(--wp--preset--spacing--edge-space);
+
+	@media (max-width: 889px) {
+		padding-left: unset;
+	}
 }
 
 /* 2021 global header/footer */
@@ -898,9 +909,28 @@ input[type="submit"]:hover {
 	}
 }
 
+#primary {
+	width: 68%;
+	float: inline-start;
+	padding-right: unset;
+	padding-inline-end: var(--wp--preset--spacing--20);
+}
+
+#secondary {
+	float: inline-end;
+	clear: inline-end;
+}
+
+@media (max-width: 876px) {
+	#primary {
+		width: 100%;
+	}
+}
+
 @media (max-width: 876px) {
 	#primary {
 		-webkit-backface-visibility: initial;
+		padding-inline-end: unset;
 	}
 
 	#secondary {
@@ -975,22 +1005,6 @@ input[type="submit"]:hover {
 		width: 36px;
 	}
 
-}
-
-.content-area {
-	width: 68%;
-}
-
-@media (max-width: 876px) {
-	.content-area {
-		width: 100%;
-	}
-
-	.content-area table {
-		display: block;
-		max-width: fit-content;
-		overflow-x: auto;
-	}
 }
 
 .post-type-archive-handbook aside[id^="handbook"] .widget-title,

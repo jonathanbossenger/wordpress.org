@@ -909,26 +909,22 @@ input[type="submit"]:hover {
 	}
 }
 
-#primary {
+.content-area {
 	width: 68%;
 	float: inline-start;
 	padding-right: unset;
 	padding-inline-end: var(--wp--preset--spacing--20);
 }
 
+.widget-area,
 #secondary {
 	float: inline-end;
 	clear: inline-end;
 }
 
 @media (max-width: 876px) {
-	#primary {
+	.content-area {
 		width: 100%;
-	}
-}
-
-@media (max-width: 876px) {
-	#primary {
 		-webkit-backface-visibility: initial;
 		padding-inline-end: unset;
 	}

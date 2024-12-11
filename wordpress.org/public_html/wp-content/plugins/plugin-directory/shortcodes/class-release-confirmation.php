@@ -219,7 +219,7 @@ class Release_Confirmation {
 			$user = get_user_by( 'login', $data['discarded']['user'] );
 			printf(
 				'<span title="%s">%s</span><br>',
-				esc_attr( gmdate( 'Y-m-d H:i:s', $time ) ),
+				esc_attr( gmdate( 'Y-m-d H:i:s', $data['discarded']['time'] ) ),
 				sprintf(
 					__( 'Discarded by %1$s, %2$s ago.', 'wporg-plugins' ),
 					$user->display_name ?: $user->user_login,

@@ -282,7 +282,7 @@ class WPORG_Themes_Upload {
 		$this->version_status = 'live';
 
 		if ( 'themedropbox' !== $author && function_exists( 'bump_stats_extra' ) ) {
-			bump_stats_extra( 'themes', 'upload_from_svn' );
+			bump_stats_extra( 'themes', 'upload_by_svn' );
 		}
 
 		return $this->import( array( // return true | WP_Error

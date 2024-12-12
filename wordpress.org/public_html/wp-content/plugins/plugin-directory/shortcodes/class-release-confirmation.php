@@ -177,6 +177,8 @@ class Release_Confirmation {
 			_e( 'Release did not require confirmation.', 'wporg-plugins' );
 		} else if ( ! empty( $data['discarded'] ) ) {
 			_e( 'Release discarded.', 'wporg-plugins' );
+		} elseif ( $data['confirmed'] && ! $data['zips_built'] ) {
+			_e( 'Release confirmed, waiting for processing.', 'wporg-plugins' );
 		} else if ( $data['confirmed'] ) {
 			_e( 'Release confirmed.', 'wporg-plugins' );
 		} else if ( 1 == $data['confirmations_required'] ) {
@@ -227,9 +229,28 @@ class Release_Confirmation {
 				)
 			);
 		}
+
+		// Add a note that the release is in a processing state.
+		if ( $data['confirmed'] && ! $data['zips_built'] ) {
+			printf(
+				'<span>%s</span><br>',
+				__( 'The ZIP files for this release have not yet been built by WordPress.org.', 'wporg-plugins' )
+			);
+		}
+
 		echo '</div>';
 
-		return ob_get_clean();
+		$text = ob_get_clean();
+
+		/**
+		 * Filters the release approval text.
+		 *
+		 * @param string  $text   The release approval text.
+		 * @param WP_Post $plugin The plugin post object.
+		 * @param array   $data   The release data.
+		 * @return string
+		 */
+		return apply_filters( 'wporg_plugins_release_approval_text', $text, $plugin, $data );
 	}
 
 	static function get_actions( $plugin, $data ) {

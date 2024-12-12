@@ -622,8 +622,9 @@ class Import {
 			Plugin_Directory::add_release(
 				$plugin,
 				[
-					'tag'        => $tag,
-					'zips_built' => true
+					'tag'                      => $tag,
+					'zips_built'               => true,
+					'zips_built_from_revision' => ( $zip_builder->plugins_revision ?? 0 ) ?: $svn_revision_triggered,
 				]
 			);
 		}

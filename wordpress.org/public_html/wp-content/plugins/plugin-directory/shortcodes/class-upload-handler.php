@@ -809,14 +809,7 @@ class Upload_Handler {
 				}
 
 				// ERROR or WARNING
-				$result_label = str_replace(
-					[
-						'S_LOW_SEVERITY', // S included because of the pluralisation.
-						'_LOW_SEVERITY'
-					],
-					'',
-					$result_type
-				);
+				$result_label = str_replace( '_LOW_SEVERITY', '', $result_type );
 
 				$maybe_false_positive  = '';
 				if ( str_ends_with( $result_type, 'LOW_SEVERITY' ) ) {
@@ -831,7 +824,7 @@ class Upload_Handler {
 						esc_url( $result['docs'] ?? '' ),
 						esc_attr( $maybe_false_positive ),
 						esc_html( "{$result_label}: {$result['code']}" ),
-						esc_html( $result['message'] )
+						$result['message'] // Already escaped.
 					);
 				}
 			}

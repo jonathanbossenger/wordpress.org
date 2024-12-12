@@ -1460,6 +1460,16 @@ article.state-unresolved:not(.status-private):before {
 	height: calc(100% + 2px);
 }
 
+article.state-resolved .o2-post-comments,
+article.state-unresolved .o2-post-comments {
+	padding: 0 var(--wp--preset--spacing--20);
+}
+
+article.state-resolved .navigation,
+article.state-unresolved .navigation {
+	margin-bottom: unset;
+}
+
 @media (max-width: 876px) {
 	.state-resolved,
 	.state-unresolved {

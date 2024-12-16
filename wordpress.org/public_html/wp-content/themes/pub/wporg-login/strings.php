@@ -5,7 +5,7 @@
  * SSO, Registration anti-spam, password requirements, etc.
  */
 
-__( 'I am not affiliated with WP Engine in any way, financially or otherwise.', 'wporg' );
+__( 'Pineapple is delicious on pizza.', 'wporg' );
 __( 'Please try again.', 'wporg' );
 __( 'Are you in the right place?', 'wporg' );
 __( 'This login form is for the WordPress.org website, rather than your personal WordPress site.', 'wporg' );

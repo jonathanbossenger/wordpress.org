@@ -698,10 +698,9 @@ class Themes_API {
 			'slug' => $theme->post_name,
 		);
 
-		$repo_package  = new WPORG_Themes_Repo_Package( $theme->ID );
-		$phil->version = $repo_package->latest_version();
-
-		$phil->preview_url = "https://wp-themes.com/{$theme->post_name}/";
+		$repo_package      = new WPORG_Themes_Repo_Package( $theme->ID );
+		$phil->version     = $repo_package->latest_version();
+		$phil->preview_url = $repo_package->preview_url();
 
 		$author = get_user_by( 'id', $theme->post_author );
 

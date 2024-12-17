@@ -4,7 +4,7 @@
 :root {
 
 	/* Header */
-	--bbbase-header-background-color: rgb(221,130,59,1);
+	--bbbase-header-background-color: rgb(221, 130, 59, 1);
 	--bbbase-header-image-url: none;
 	--bbbase-header-image-url-2x: none;
 	--bbbase-header-image-size: 0 0;
@@ -19,18 +19,18 @@
 	--bbbase-logo-image-width: 269px;
 
 	/* Buttons */
-	--bbbase-button-background-color: rgba(221,130,59,0.9);
-	--bbbase-button-background-color-hover: rgba(221,130,59,0.9);
-	--bbbase-button-color: rgba(255,235,235,0.9);
-	--bbbase-button-color-hover: rgba(255,235,235,0.9);
+	--bbbase-button-background-color: rgba(199, 66, 0, 1);
+	--bbbase-button-background-color-hover: rgba(221, 130, 59, 0.9);
+	--bbbase-button-color: rgba(255, 235, 235, 0.9);
+	--bbbase-button-color-hover: rgba(255, 235, 235, 0.9);
 
 	/* Links */
-	--bbbase-link-color: rgba(221,130,59,0.9);
-	--bbbase-link-color-hover: rgba(213,78,33,1);
+	--bbbase-link-color: rgba(199, 66, 0, 1);
+	--bbbase-link-color-hover: rgba(213, 78, 33, 1);
 
 	/* Subnav */
-	--bbbase-subnav-color-hover: rgb(216,72,0,1);
+	--bbbase-subnav-color-hover: rgb(216, 72, 0, 1);
 
 	/* Lists */
-	--bbbase-list-hover-helper-background: rgba(255,235,235,1);
+	--bbbase-list-hover-helper-background: rgba(255, 235, 235, 1);
 }

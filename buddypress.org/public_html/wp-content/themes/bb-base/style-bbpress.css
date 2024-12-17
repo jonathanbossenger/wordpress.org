@@ -4,7 +4,7 @@
 :root {
 
 	/* Header */
-	--bbbase-header-background-color: rgba(141,199,112,1);
+	--bbbase-header-background-color: rgba(141, 199, 112, 1);
 	--bbbase-header-image-url: url('../bbpress-org/images/bee.png');
 	--bbbase-header-image-url-2x: url('../bbpress-org/images/bee-2x.png');
 	--bbbase-header-image-size: 231px 162px;
@@ -19,18 +19,18 @@
 	--bbbase-logo-image-width: 208px;
 
 	/* Buttons */
-	--bbbase-button-background-color: rgba(0,153,51,1);
-	--bbbase-button-background-color-hover: rgba(0,153,51,1);
-	--bbbase-button-color: rgba(235,255,235,0.9);
-	--bbbase-button-color-hover: rgba(235,255,235,0.9);
+	--bbbase-button-background-color: rgba(0, 153, 51, 1);
+	--bbbase-button-background-color-hover: rgba(0, 153, 51, 1);
+	--bbbase-button-color: rgba(235, 255, 235, 0.9);
+	--bbbase-button-color-hover: rgba(235, 255, 235, 0.9);
 
 	/* Links */
-	--bbbase-link-color: #rgba(50,140,0,1);
-	--bbbase-link-color-hover: rgba(213,78,33,1);
+	--bbbase-link-color: rgba(50, 140, 0, 1);
+	--bbbase-link-color-hover: rgba(213, 78, 33, 1);
 
 	/* Subnav */
-	--bbbase-subnav-color-hover: rgba(141,199,112,1);
+	--bbbase-subnav-color-hover: rgba(141, 199, 112, 1);
 
 	/* Lists */
-	--bbbase-list-hover-helper-background: rgba(235,255,235,1);
+	--bbbase-list-hover-helper-background: rgba(235, 255, 235, 1);
 }

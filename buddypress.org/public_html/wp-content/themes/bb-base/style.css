@@ -34,8 +34,11 @@ a img { border: 1px solid transparent; }
 -------------------------------------------------------------- */
 :root {
 
+	/* Border Radius */
+	--bbbase-border-radius: 8px;
+
 	/* Header */
-	--bbbase-header-background-color: #eee;
+	--bbbase-header-background-color: rgba(238, 238, 238, 1);
 	--bbbase-header-image-url: none;
 	--bbbase-header-image-url-2x: none;
 	--bbbase-header-image-size: 0 0 ;
@@ -50,28 +53,42 @@ a img { border: 1px solid transparent; }
 	--bbbase-logo-width: 208px;
 
 	/* Buttons */
-	--bbbase-button-background-color: #000;
-	--bbbase-button-background-color-hover: #000;
-	--bbbase-button-color: #fff;
-	--bbbase-button-color-hover: #fff;
+	--bbbase-button-background-color: rgba(0, 0, 0, 1);
+	--bbbase-button-background-color-hover: rgba(0, 0, 0, 1);
+	--bbbase-button-color: rgba(255, 255, 255, 1);
+	--bbbase-button-color-hover: rgba(255, 255, 255, 1);
 
 	/* Links */
-	--bbbase-link-color: #000;
-	--bbbase-link-color-hover: #333;
+	--bbbase-link-color: rgba(0, 0, 0, 1);
+	--bbbase-link-color-hover: rgba(51, 51, 51, 1);
 
 	/* Subnav */
-	--bbbase-subnav-color-hover: #000;
+	--bbbase-subnav-color-hover: rgba(0, 0, 0, 1);
 
 	/* Lists */
-	--bbbase-list-hover-helper-background: rgba(0,0,0,0.01);
+	--bbbase-list-hover-helper-background: rgba(0, 0, 0, 0.01);
+
+	/* Screen Reader */
+	--bbbase-screen-reader-color: rgba(33, 117, 155, 1);
+	--bbbase-screen-reader-shador-color: rgba(0, 0, 0, 0.6);
 
 	/* Common Colors */
-	--bbbase-brightest-white: #fff;
-	--bbbase-darkest-black: #000;
-	--bbbase-light-background-low-contrast: #fafafa;
-	--bbbase-grey-background-low-contrast: #eee;
-	--bbbase-grey-border-low-contrast: #ccc;
-	--bbbase-grey-border-low-contrast: #ccc;
+	--bbbase-brightest-white: rgba(255, 255, 255, 1);
+	--bbbase-brightest-white-blend: rgba(255, 255, 255, 0.3);
+	--bbbase-darkest-black: rgba(0, 0, 0, 1);
+	--bbbase-darkest-black-blend: rgba(0, 0, 0, 0.05);
+	--bbbase-light-background-color-low-contrast: rgba(250, 250, 250, 1);
+	--bbbase-grey-background-color-low-contrast: rgba(238, 238, 238, 1);
+	--bbbase-grey-border-color-low-contrast: rgba(204, 204, 204, 1);
+	--bbbase-darkest-text-color-low-contrast: rgba(34, 34, 34, 1);
+	--bbbase-darker-text-color-low-contrast: rgba(51, 51, 51, 1);
+	--bbbase-dark-text-color-low-contrast: rgba(85, 85, 85, 1);
+	--bbbase-light-text-color-low-contrast: rgba(170, 170, 170, 1);
+	--bbbase-lightest-text-color-low-contrast: rgba(241, 241, 241, 1);
+
+	/* Form Field Colors */
+	--bbbase-form-field-background-color: rgba(255, 255, 255, 1);
+	--bbbase-form-field-outline-color: rgba(102, 128, 189, 1);
 }
 
 /* =Site Style
@@ -85,8 +102,8 @@ body {
 	font: 100 16px/1.5 Inter, sans-serif;
 	text-align: left;
 	background: var(--bbbase-brightest-white);
+	color: var(--bbbase-darkest-text-color-low-contrast);
 	margin: 0;
-	color: #222;
 }
 .hide-if-js {
 	display: none;
@@ -152,7 +169,7 @@ body {
 	width: 330px;
 	font-weight: 400;
 	font-size: 16px;
-	color: #555;
+	color: var(--bbbase-dark-text-color-low-contrast);
 }
 #big-demo-button {
 	position: absolute;
@@ -168,7 +185,7 @@ body {
 
 p.headline-label {
 	padding: 0 0 24px 10px;
-	color: var(--bbbase-grey-border-low-contrast);
+	color: var(--bbbase-grey-border-color-low-contrast);
 }
 p.plans {
 	text-align: right;
@@ -178,8 +195,8 @@ p.plans {
 	text-decoration: none;
 }
 #showcase {
-	background-color: var(--bbbase-grey-background-low-contrast);
-	color: #555;
+	background-color: var(--bbbase-grey-background-color-low-contrast);
+	color: var(--bbbase-dark-text-color-low-contrast);
 }
 #showcase-inner {
 	margin: 0 auto;
@@ -187,7 +204,7 @@ p.plans {
 	padding: 60px 0 60px;
 }
 #showcase h3 {
-	color: #333;
+	color: var(--bbbase-darker-text-color-low-contrast);
 	margin: 0 0 10px 0;
 }
 #showcase img {
@@ -204,8 +221,8 @@ p.plans {
 
 #footer {
 	width: 100%;
-	background-color: var(--bbbase-light-background-low-contrast);
-	color: #aaa;
+	background-color: var(--bbbase-light-background-color-low-contrast);
+	color: var(--bbbase-light-text-color-low-contrast);
 }
 #footer-inner {
 	font-size: 12px;
@@ -264,11 +281,11 @@ div.feature p.book-description {
 	font-size: 1.1em;
 }
 div.feature img {
-	border: 1px solid var(--bbbase-grey-border-low-contrast);
+	border: 1px solid var(--bbbase-grey-border-color-low-contrast);
 }
 
 a:hover img {
-	border: 1px solid #555
+	border: 1px solid var(--bbbase-dark-text-color-low-contrast);
 }
 
 div.content {
@@ -287,7 +304,7 @@ div.sidebar {
 }
 div.group {
 	padding: 20px 20px 1px 20px;
-	background: var(--bbbase-grey-background-low-contrast);
+	background: var(--bbbase-grey-background-color-low-contrast);
 	margin: 0 0 24px 0;
 }
 
@@ -324,7 +341,7 @@ div.plan {
 	padding: 20px;
 	margin: 0 24px 12px 0;
 	background: #f6f6f6;
-	border: var(--bbbase-grey-border-low-contrast) solid 1px;
+	border: var(--bbbase-grey-border-color-low-contrast) solid 1px;
 }
 div.plan p {
 	margin: 0;
@@ -347,7 +364,7 @@ div.plan ul {
 	margin: 0 0 12px 0;
 }
 div.plan ul li {
-	border-bottom: var(--bbbase-grey-border-low-contrast) solid 1px;
+	border-bottom: var(--bbbase-grey-border-color-low-contrast) solid 1px;
 	list-style: none;
 }
 
@@ -381,7 +398,7 @@ div.single-post table tr th {
 }
 
 div.single-post table tr.alt td {
-	background: #f5f5f5;
+	background: var(--bbbase-grey-background-color-low-contrast);
 }
 
 /* =Buttons
@@ -396,12 +413,13 @@ input[type=reset] {
 	background-color: var(--bbbase-button-background-color);
 
 	/* Overrides */
+	cursor: pointer;
 	font-family: sans-serif;
 	height: auto;
-	line-height: 1;
-	padding: 5px 10px;
-	font-weight: 600;
-	border-radius: 8px;
+	line-height: 1rem;
+	padding: 8px 12px;
+	font-weight: 400;
+	border-radius: var(--bbbase-border-radius) !important;
 	border: none;
 }
 
@@ -417,6 +435,22 @@ input[type=reset]:hover,
 input[type=reset]:active {
 	color: var(--bbbase-button-color-hover);
 	background-color: var(--bbbase-button-background-color-hover);
+
+	/* Overrides */
+	border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.button[disabled],
+button[disabled],
+input[type=button][disabled],
+input[type=submit][disabled],
+input[type=reset][disabled] {
+	cursor: not-allowed;
+	color: var(--bbbase-dark-text-color-low-contrast);
+	background-color: var(--bbbase-grey-background-color-low-contrast);
 
 	/* Overrides */
 	border: none;
@@ -442,7 +476,7 @@ input[type=reset]:active {
 #bb-menu-icon:before,
 #mobile-menu-button:before {
 	font: normal 16px/1 'dashicons';
-	color: var(--bbase-darkest-black);
+	color: var(--bbbase-darkest-black);
 	content: '\f349';
 	flex-shrink: 0;
 }
@@ -471,7 +505,7 @@ input[type=reset]:active {
 	text-decoration: none;
 	width: 100%;
 	height: 100%;
-	color: #fff;
+	color: var(--bbbase-brightest-white);
 	padding: 0 13px;
 	font-weight: 600;
 }
@@ -480,16 +514,17 @@ input[type=reset]:active {
 #nav li a.active,
 #wporg-header #wporg-header-menu li :link:hover,
 #wporg-header #wporg-header-menu li :link:active {
-	background-color: rgba(255,255,255,0.3);
+	background-color: var(--bbbase-brightest-white-blend);
 }
 
 #nav li.current-menu-item a,
 #nav li.current-page-ancestor a,
-#nav li.current a {
+#nav li.current a,
+#wporg-header #wporg-header-menu li.current a {
 
 	/* Match body for strong emphasis */
-	background-color: #fff;
-	color: #111;
+	background-color: var(--bbbase-brightest-white);
+	color: var(--bbbase-darkest-black);
 }
 
 /* archive pagination */
@@ -506,8 +541,8 @@ nav.pagination span.page-numbers.current {
 -------------------------------------------------------------- */
 
 h2 {
+	color: var(--bbbase-darkest-black);
 	font-size: 20px;
-	color: var(--bbase-darkest-black);
 	margin: 0 0 30px 0;
 }
 h2.graphic {
@@ -521,32 +556,38 @@ h2.graphic {
 	margin: 0;
 	font-weight: 400;
 	font-size: 2.5em;
-	color: #555;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	text-shadow: none;
 	text-decoration: none;
 }
 
-h3 {
-	font-size: 15px;
-	color: #333;
-	margin-bottom: 15px;
+h3,
+h4,
+h5,
+h6 {
+	color: var(--bbbase-darker-text-color-low-contrast);
 }
 
+h3 {
+	font-size: 15px;
+	margin-bottom: 15px;
+}
 h3.tour {
-	background: var(--bbbase-grey-background-low-contrast);
-	color: var(--bbase-darkest-black);
+	background: var(--bbbase-grey-background-color-low-contrast);
+	color: var(--bbbase-darkest-black);
 	padding: 6px 15px;
 	margin: 0 0 12px 0;
-	border-bottom: var(--bbbase-grey-border-low-contrast) solid 1px;
+	border-bottom: var(--bbbase-grey-border-color-low-contrast) solid 1px;
 	font-size: 18px;
 }
 div.group h3 {
 	margin: 0 0 12px 0;
 }
+
 h4 {
 	font-size: 14px;
-	color: #333;
 }
+
 
 /* =Lists
 -------------------------------------------------------------- */
@@ -567,7 +608,7 @@ dl {
 }
 dl dt {
 	font-weight: 600;
-	color: #333;
+	color: var(--bbbase-darker-text-color-low-contrast);
 }
 dl dd {
 	margin: 0 0 12px 0;
@@ -575,7 +616,7 @@ dl dd {
 dl.form dt {
 	float: left;
 	width: 140px;
-	color: #444;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	font-size: 12px;
 	text-align: right;
 	padding: 0 10px 0 0;
@@ -587,12 +628,12 @@ dl.from dd {
 }
 dl.help dt {
 	font-size: 14px;
-	color: var(--bbase-darkest-black);
+	color: var(--bbbase-darkest-black);
 }
 dl.help dd {
 	margin: 0 0 24px 0;
 	padding: 0 0 24px 0;
-	border-bottom: var(--bbbase-grey-border-low-contrast) solid 1px;
+	border-bottom: var(--bbbase-grey-border-color-low-contrast) solid 1px;
 }
 
 /* =Links
@@ -617,13 +658,13 @@ img {
 div.wp-caption {
 	max-width: 680px;
 	padding: 10px;
-	border: 1px solid var(--bbbase-grey-border-low-contrast);
-	background: var(--bbbase-grey-background-low-contrast);
+	border: 1px solid var(--bbbase-grey-border-color-low-contrast);
+	background: var(--bbbase-grey-background-color-low-contrast);
 	position: relative;
 }
 
 div.wp-caption img {
-	border: 5px double var(--bbbase-grey-border-low-contrast);
+	border: 5px double var(--bbbase-grey-border-color-low-contrast);
 	position: relative;
 	display: block;
 	margin-bottom: 10px;
@@ -647,13 +688,13 @@ p.lead {
 blockquote {
 	font-style: italic;
 	font-size: 15px;
-	border: 1px dotted var(--bbbase-grey-border-low-contrast);
+	border: 1px dotted var(--bbbase-grey-border-color-low-contrast);
 	padding: 10px;
 	margin: 0 0 15px 0;
 	quotes: "\201C""\201D";
 }
 blockquote:before {
-	color: #ccc;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	content: open-quote;
 	font-size: 4em;
 	line-height: 0em;
@@ -672,7 +713,7 @@ body.single cite {
 	font-family: sans-serif;
 	font-size: 14px;
 	font-style: normal;
-	color: #aaa;
+	color: var(--bbbase-light-text-color-low-contrast);
 	display: block;
 	margin-bottom: 15px;
 }
@@ -702,17 +743,17 @@ div.single-post ol li {
 }
 small {
 	font-size: 12px;
-	color: #666 !important;
+	color: var(--bbbase-dark-text-color-low-contrast) !important;
 }
 div.action {
-	background: #EBF5FA;
+	background: var(--bbbase-grey-background-color-low-contrast);
 	font-size: 20px;
 	text-align: center;
 	padding: 20px 20px 0 20px;
 	margin: 0 0 24px 0;
 }
 div.action a:hover {
-	color: var(--bbase-darkest-black);
+	color: var(--bbbase-darkest-black);
 }
 
 /* =Accessibility
@@ -731,12 +772,12 @@ div.action a:hover {
 }
 
 .screen-reader-text:focus {
-	background-color: #f1f1f1;
+	background-color: var(--bbbase-brightest-white);
 	border-radius: 3px;
-	-webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0 0 2px 2px var(--bbbase-screen-reader-shadow-color);
+	box-shadow: 0 0 2px 2px var(--bbbase-screen-reader-shadow-color);
 	clip: auto !important;
-	color: #21759b;
+	color: var(--bbbase-screen-reader-color);
 	display: block;
 	font-size: 14px;
 	font-size: 0.875rem;
@@ -770,22 +811,17 @@ img.left {
 
 input,
 select {
+	background-color: var(--bbbase-form-field-background-color);
+	color: var(--bbbase-form-field-color);
+	border: 1px solid var(--bbbase-grey-border-color-low-contrast);
+	border-radius: var(--bbbase-border-radius);
 	font: 14px/16px sans-serif;
 	padding: 5px 10px;
-	color: #333;
-	border: 1px solid #ccc;
-	border-radius: 8px;
 }
 input.submit {
 	border: none;
-	font-weight: 600;
+	font-weight: 400;
 	cursor: pointer;
-}
-#footer input.submit {
-	font-size: 12px;
-}
-dl.support-request input {
-	width: 98%;
 }
 
 
@@ -860,10 +896,10 @@ img.centered {
 }
 .commentlist li .avatar {
 	float: left;
-	border: 1px solid var(--bbbase-grey-background-low-contrast);
 	padding: 2px;
 	margin: 0 10px 10px 0;
-	background: #fff;
+	border: 1px solid var(--bbbase-grey-background-color-low-contrast);
+	background: var(--bbbase-brightest-white);
 }
 .commentlist li ul li {
 	margin-right: -5px;
@@ -930,10 +966,10 @@ img.centered {
 	background-color: #f8f8f8;
 }
 .thread-even {
-	background-color: #fff;
+	background-color: var(--bbbase-brightest-white);
 }
 .depth-1 {
-	border: 1px solid var(--bbbase-grey-border-low-contrast);
+	border: 1px solid var(--bbbase-grey-border-color-low-contrast);
 }
 a.reply {
 	text-align: right;
@@ -953,7 +989,7 @@ a.cancel-reply {
 hr,
 #bbpress-forums hr {
 	margin: 40px;
-	border: 1px solid var(--bbbase-grey-background-low-contrast);
+	border: 1px solid var(--bbbase-grey-background-color-low-contrast);
 }
 
 div.sidebar #bbpress-forums {
@@ -1038,7 +1074,7 @@ div.sidebar #bbpress-forums {
 }
 
 #bbpress-forums .bbp-pagination {
-	color: #888;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	float: none;
 	display: flex;
 	align-items: center;
@@ -1064,7 +1100,7 @@ div.sidebar #bbpress-forums {
 #bbpress-forums .bbp-pagination-links a:hover,
 #bbpress-forums .bbp-pagination-links a {
 	border: 1px solid transparent;
-	border-radius: 8px;
+	border-radius: var(--bbbase-border-radius);
 	font-size: 16px;
 	padding: 4px 8px;
 	margin: 0;
@@ -1156,7 +1192,7 @@ body.reply-edit .bbp-reply-form code {
 #bbpress-forums div.bbp-reply-content code,
 #bbpress-forums div.bbp-topic-content pre,
 #bbpress-forums div.bbp-reply-content pre {
-	background-color: #f0f0f0;
+	background-color: var(--bbbase-lightest-text-color-low-contrast);
 	max-height: 40em;
 }
 
@@ -1181,7 +1217,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 #bbpress-forums .bbp-reply-form select,
 #bbpress-forums .bbp-topic-form select {
 	padding: 6px 8px;
-	border-radius: 8px;
+	border-radius: var(--bbbase-border-radius);
 }
 
 #bbpress-forums fieldset {
@@ -1193,7 +1229,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 #bbpress-forums fieldset.bbp-form legend {
 	font-weight: 600;
 	font-size: 15px;
-	color: #333;
+	color: var(--bbbase-darker-text-color-low-contrast);
 	padding: 10px 0 10px 0;
 }
 
@@ -1259,7 +1295,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 
 #bbpress-forums ul.sticky.status-closed li.bbp-topic-title:before,
 #bbpress-forums ul.super-sticky.status-closed li.bbp-topic-title:before {
-	color: #bbb;
+	color: var(--bbbase-light-text-color-low-contrast);
 }
 
 #bbpress-forums li.bbp-body ul li.bbp-topic-title a.page-numbers {
@@ -1268,7 +1304,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 
 #bbpress-forums ul.status-closed,
 #bbpress-forums ul.status-closed a {
-	color: #aaa;
+	color: var(--bbbase-light-text-color-low-contrast);
 }
 
 #bbpress-forums p.bbp-topic-meta {
@@ -1276,16 +1312,16 @@ body.reply-edit #bbpress-forums fieldset legend {
 }
 
 #bbpress-forums p.bbp-topic-meta a {
-	color: #888;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	text-decoration: none;
 }
 
 #bbpress-forums p.bbp-topic-meta .bbp-topic-started-in a {
-	color: #999;
-	background-color: var(--bbbase-grey-background-low-contrast);
-	padding: 3px 8px;
+	color: var(--bbbase-dark-text-color-low-contrast);
+	background-color: var(--bbbase-grey-background-color-low-contrast);
+	border: 0.5px solid var(--bbbase-dark-text-color-low-contrast);
 	border-radius: 10px;
-	border: 0.5px solid #999;
+	padding: 3px 8px;
 	font-size: 10px;
 	font-weight: 400;
 }
@@ -1321,7 +1357,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 	padding: 0;
 	margin: 5px 15px 5px 5px;
 	display: none;
-	color: rgba(0,0,0,0.05);
+	color: var(--bbbase-darkest-black-blend);
 }
 
 #bbpress-forums li.bbp-body div.type-topic:hover span.bbp-admin-links,
@@ -1371,7 +1407,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 	height: 40px;
 	max-width: 40px;
 	max-height: 40px;
-	border-radius: 8px;
+	border-radius: var(--bbbase-border-radius);
 }
 
 #bbpress-forums li.bbp-body div.bbp-topic-author .bbp-topic-author-info,
@@ -1403,7 +1439,7 @@ body.reply-edit #bbpress-forums fieldset legend {
 
 div.bbp-template-notice,
 div.indicator-hint {
-	border-radius: 8px;
+	border-radius: var(--bbbase-border-radius);
 	padding: 0;
 	margin: 0 0 30px 0;
 }
@@ -1420,7 +1456,7 @@ div.bbp-template-notice p {
 	float: none;
 	text-align: right;
 	padding: 20px;
-	background: #f5f5f5;
+	background: var(--bbbase-grey-background-color-low-contrast);
 }
 #bbpress-forums #bbp-your-profile fieldset.submit div {
 	float: none;
@@ -1465,19 +1501,19 @@ div.bbp-template-notice p {
 
 #bbpress-forums div.bbp-reply-content pre,
 #bbpress-forums div.bbp-topic-content pre {
-	background-color: #f2f2f2;
+	background-color: var(--bbbase-lightest-text-color-low-contrast);
+	border: 1px dotted var(--bbbase-grey-border-color-low-contrast);
 	overflow: auto;
 	margin: 5px 5px 15px 5px;
 	padding: 10px;
-	border: 1px dotted #bbb;
 }
 
 
 #bbpress-forums fieldset.bbp-form textarea,
 #bbpress-forums fieldset.bbp-form select,
 #bbpress-forums fieldset.bbp-form input {
-	border: 1px solid #ccc;
-	outline-color: rgb(102, 128, 189) !important;
+	border: 1px solid var(--bbbase-grey-border-color-low-contrast);
+	outline-color: var(--bbbase-form-field-outline-color) !important;
 }
 
 
@@ -1496,7 +1532,7 @@ div.bbp-template-notice p {
 
 #bbpress-forums #bbp-single-user-details #bbp-user-navigation a {
 	padding: 8px 15px;
-	border-radius: 8px;
+	border-radius: var(--bbbase-border-radius);
 }
 
 #bbpress-forums #bbp-user-body {
@@ -1560,8 +1596,9 @@ body.bbp-user-edit #bbp-user-wrapper #bbp-user-body {
 #bbpress-forums #bbp-your-profile fieldset input,
 #bbpress-forums #bbp-your-profile fieldset select,
 #bbpress-forums #bbp-your-profile fieldset textarea {
-	border-radius: 8px;
-	background-color: #fff;
+	color: var(--bbbase-form-field-color);
+	background-color: var(--bbbase-form-field-background-color);
+	border-radius: var(--bbbase-border-radius);
 	margin-top: 0;
 }
 #bbpress-forums #bbp-your-profile fieldset input:focus,
@@ -1598,7 +1635,7 @@ body.bbp-user-edit #bbp-user-wrapper #bbp-user-body {
 .sidebar div ul li a:before {
 	font: normal 16px/23px 'dashicons';
 	margin-right: 5px;
-	color: var(--bbase-darkest-black);
+	color: var(--bbbase-darkest-black);
 }
 
 .sidebar a.feed:before {
@@ -1702,8 +1739,8 @@ div.plugin-meta {
 	width: 200px;
 	padding: 10px 20px 15px 20px;
 	margin-left: 20px;
-	background: var(--bbbase-light-background-low-contrast);
-	border: 1px solid var(--bbbase-grey-background-low-contrast);
+	background: var(--bbbase-light-background-color-low-contrast);
+	border: 1px solid var(--bbbase-grey-background-color-low-contrast);
 }
 
 div.plugin-meta img {
@@ -1727,7 +1764,7 @@ div.plugin-meta img {
 
 #bbpress-forums .wp-editor-tools a {
 	border: none;
-	color: #888;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	background: none;
 	float: none;
 }
@@ -1736,7 +1773,7 @@ div.plugin-meta img {
 #bbpress-forums .wp_themeSkin tr.mceFirst td.mceToolbar {
 	background: #f6f6f6;
 	border: none;
-	border-color: var(--bbbase-grey-border-low-contrast);
+	border-color: var(--bbbase-grey-border-color-low-contrast);
 	border-width: 1px 1px 0 1px;
 	border-style: solid;
 	border-radius: 0;
@@ -1752,7 +1789,7 @@ div.plugin-meta img {
 }
 
 #bbpress-forums .mceIframeContainer {
-	border: 1px solid #ccc !important;
+	border: 1px solid var(--bbbase-grey-border-color-low-contrast) !important;
 	margin-top: -3px;
 }
 
@@ -1767,7 +1804,7 @@ div.plugin-meta img {
 
 #bbpress-forums p.bbp-user-nicename {
 	font-weight: 600;
-	color: #666;
+	color: var(--bbbase-dark-text-color-low-contrast);
 	direction: ltr;
 	word-wrap: break-word;
 	margin: 0;
@@ -1836,11 +1873,11 @@ div.plugin-meta img {
 
 #menu-bp li a:hover {
 	text-decoration: none;
-	background: var(--bbbase-light-background-low-contrast);
+	background: var(--bbbase-light-background-color-low-contrast);
 }
 
 #menu-bp li.current-menu-parent a {
-	background: var(--bbbase-grey-background-low-contrast);
+	background: var(--bbbase-grey-background-color-low-contrast);
 	color: inherit;
 }
 
@@ -1875,7 +1912,7 @@ div.plugin-meta img {
 #buddypress .dir-search input[type=text],
 #buddypress .groups-members-search input[type=search],
 #buddypress .groups-members-search input[type=text] {
-	background: #fff;
+	background: var(--bbbase-form-field-background-color);
 }
 
 /* =Activity Streams
@@ -2014,13 +2051,13 @@ div.plugin-meta img {
 	#wporg-header #wporg-header-menu li :visited {
 		margin: 0;
 		padding: 0;
-		color: var(--bbase-darkest-black);
+		color: var(--bbbase-darkest-black);
 		text-shadow: none;
 		border-radius: 0;
 	}
 	#header #nav #bb-nav li.current a,
 	#header #nav #bb-nav li a:hover {
-		color: #fff;
+		color: var(--bbbase-brightest-white);
 	}
 	#header #bb-nav,
 	#bbpress-forums .bbp-pagination-count,
@@ -2031,7 +2068,7 @@ div.plugin-meta img {
 	#header #nav:hover #bb-nav,
 	#header #nav:focus #bb-nav,
 	#wporg-header #wporg-header-menu.toggled {
-		background-color: var(--bbbase-grey-background-low-contrast);
+		background-color: var(--bbbase-grey-background-color-low-contrast);
 		display: block !important;
 		z-index: 100;
 	}
@@ -2043,7 +2080,7 @@ div.plugin-meta img {
 	#header #nav:hover #bb-menu-icon:before,
 	#header #nav:focus #bb-menu-icon:before,
 	#wporg-header #mobile-menu-button[aria-expanded="true"]:before {
-		color: #fff;
+		color: var(--bbbase-brightest-white);
 	}
 }
 
@@ -2073,7 +2110,7 @@ div.plugin-meta img {
 	#bbpress-forums li.bbp-body div.type-topic span.bbp-admin-links,
 	#bbpress-forums li.bbp-body div.type-reply span.bbp-admin-links {
 		display: block !important;
-		border-top: 1px dotted var(--bbbase-grey-border-low-contrast);
+		border-top: 1px dotted var(--bbbase-grey-border-color-low-contrast);
 		margin: 10px 10px 0 10px;
 		padding: 5px 0;
 		position: relative !important;
@@ -2089,4 +2126,3 @@ div.plugin-meta img {
 		margin: 15px;
 	}
 }
-

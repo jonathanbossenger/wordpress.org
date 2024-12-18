@@ -32,6 +32,7 @@ class Capabilities {
 			'plugin_remove_support_rep',
 			'plugin_self_transfer',
 			'plugin_self_close',
+			'plugin_toggle_public_preview',
 			'plugin_manage_releases',
 		);
 		if ( ! in_array( $cap, $handled_caps ) ) {
@@ -70,6 +71,7 @@ class Capabilities {
 				array(
 					'plugin_self_transfer',
 					'plugin_self_close',
+					'plugin_toggle_public_preview'
 				)
 			)
 		) {
@@ -94,6 +96,7 @@ class Capabilities {
 				array(
 					'plugin_self_close',
 					'plugin_self_transfer',
+					'plugin_toggle_public_preview',
 					'plugin_add_committer',
 					'plugin_remove_committer',
 				)

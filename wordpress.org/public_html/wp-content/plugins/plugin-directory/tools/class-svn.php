@@ -213,7 +213,9 @@ class SVN {
 	 * }
 	 */
 	public static function add( $file ) {
-		$options[]   = 'non-interactive';
+		$options = [
+			'non-interactive'
+		];
 		$esc_options = self::parse_esc_parameters( $options );
 
 		$esc_file     = escapeshellarg( $file );

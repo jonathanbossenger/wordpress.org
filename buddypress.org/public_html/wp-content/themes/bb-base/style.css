@@ -1971,7 +1971,7 @@ div.plugin-meta img {
 	#footer-inner {
 		width: 960px;
 	}
-	body:not(.page-template-page-homepage) div.content {
+	body:not(.page-template-page-homepage):not(.bbp-user-page) div.content {
 		width: 700px;
 	}
 	div.leftcol {

@@ -11,6 +11,14 @@ body.trac #ticket table.properties a:hover {
 	background-color: transparent;
 }
 
+body.trac a.trac-rawlink:hover:before,
+body.trac a.trac-ziplink:hover:before,
+body.trac a.ext-link:hover:before,
+body.trac a.mail-link:hover:before {
+	border: none;
+	text-decoration: none;
+}
+
 body.trac a.attachment {
 	display: inline;
 }
@@ -62,6 +70,12 @@ body.trac :visited {
 body.trac ul,
 body.trac li {
 	border: none;
+}
+
+body.trac ul,
+body.trac ol {
+    padding-left: 20px;
+    margin: 0;
 }
 
 body.trac .buttons {
@@ -303,7 +317,7 @@ body.trac #mainnav {
 
 body.trac #mainnav ul,
 body.trac #mainnav ul li,
-body.trac #mainnav ul li a {
+body.trac #mainnav ul li :link {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -312,24 +326,24 @@ body.trac #mainnav ul li a {
 	margin: 0;
 }
 
-body.trac #mainnav ul li a {
+body.trac #mainnav ul li :link {
 	box-sizing: border-box;
 	padding: 0 15px;
 	border: 1px solid transparent !important;
-	border-top-left-radius: 8px !important;
-	border-top-right-radius: 8px !important;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
 }
 
-body.trac #mainnav li.active a {
+body.trac #mainnav li.active :link {
 	margin-top: 2px;
-	background-color: #fff !important;
-	color: #000 !important;
+	background-color: #fff;
+	color: #000;
 	border: 1px solid var(--bbbase-grey-border-color-low-contrast) !important;
 	border-bottom-color: transparent !important;
 }
 
-body.trac #mainnav li:not(.active) a:hover {
-	background-color: #fafafa !important;
+body.trac #mainnav li:not(.active) :link:hover {
+	background-color: #fafafa;
 	border: 1px solid rgba(0, 0, 0, 0.1) !important;
 	border-bottom: 1px solid transparent !important;
 }
@@ -347,6 +361,10 @@ body.trac #main p {
 
 body.trac #main .date p {
 	margin: 0;
+}
+
+body.trac #main p:first-child {
+	margin-top: 0;
 }
 
 body.trac #main p:last-child {
@@ -411,6 +429,10 @@ body.trac #ctxtnav {
 	border-bottom: 1px solid var(--bbbase-grey-border-color-low-contrast) !important;
 }
 
+body.trac #ctxtnav:not(:has(a)) {
+	display: none;
+}
+
 body.trac #ctxtnav ul {
 	display: flex;
 	gap: 30px;
@@ -433,7 +455,7 @@ body.trac #metanav {
     font-size: 14px;
     top: auto;
     right: auto;
-    line-height:24px;
+    line-height: 24px;
     padding-top: .5em;
 }
 
@@ -592,17 +614,60 @@ body.trac .inlinebuttons input[type=submit] {
 }
 
 /* Roadmap */
+body.trac #content.roadmap .milestone {
+	margin: 0 0 30px 0;
+}
+
 body.trac #content.roadmap .milestone .info h2 {
 	border: none;
 	background: none;
 }
 
-body.trac #content.roadmap .milestone .info .date {
-    color: #888;
+body.trac #content.roadmap .milestone .info .date,
+body.trac #content.roadmap .milestone .info .percent,
+body.trac #content.roadmap .milestone .info .legend {
     font-size: 16px;
     font-style: normal;
+}
+body.trac #content.roadmap .milestone .info .date {
+    color: #888;
 	font-weight: 600;
-    margin: 0 0 30px 0;
+    margin: 0 20px 10px 20px;
+}
+
+body.trac #content.roadmap .milestone .info .percent,
+body.trac #content.roadmap .milestone .info .legend {
+	margin: 10px;
+}
+
+body.trac #content.roadmap .milestone .info .legend {
+	color: var(--bbbase-brightest-white);
+}
+
+body.trac #content.roadmap .milestone .info .legend span {
+	margin: 0 0 0 10px;
+	text-transform: capitalize;
+}
+
+body.trac #content.roadmap .milestone .description {
+    margin: 0 20px;
+}
+
+body.trac table.progress,
+body.trac .trac-groupprogress {
+	border: none;
+    width: 50%;
+    max-width: 50%;
+	margin: 0 15px;
+	background: var(--bbbase-light-background-color-low-contrast);
+}
+
+body.trac table.progress td.open {
+    background: var(--bbbase-light-background-color-low-contrast);
+}
+
+body.trac table.progress td.closed {
+	background: var(--bbbase-button-background-color);
 }
 
 /* Wiki */
@@ -622,6 +687,15 @@ body.trac pre.literal-block {
     margin: 20px 0;
     padding: 15px 20px;
     overflow: auto;
+}
+
+body.trac .wikipage {
+	padding: 0;
+	margin: 0 0 60px 0;
+}
+
+body.trac .wikipage h1 {
+    margin: 0 0 30px 0;
 }
 
 body.trac .wikipage h2 {
@@ -804,6 +878,10 @@ body.trac div#trac-add-comment fieldset {
 	border: none;
 }
 
+body.trac #attachments:empty {
+	display: none;
+}
+
 body.trac #content.ticket {
 	max-width: 940px;
 }
@@ -895,7 +973,7 @@ body.trac #github-prs .button {
 body.trac #changelog .changes,
 body.trac #ticketchange .changes,
 body.trac div.change ul.changes {
-    margin: 30px 0 0 0;
+    margin: 20px 0;
     padding: 30px;
     border: 1px solid #009933;
     float: none;
@@ -903,6 +981,16 @@ body.trac div.change ul.changes {
     background: rgba(0,255,0,0.1);
     color: inherit;
     word-break: break-word;
+}
+
+body.trac #changelog h3,
+body.trac #ticketchange h3 {
+    border-bottom: 1px solid #d7d7d7;
+    box-shadow: none;
+    padding: 10px 0;
+    margin-bottom: 15px;
+    font-size: 100%;
+    font-weight: normal;
 }
 
 body.trac div#content.ticket #prefs {
@@ -1198,6 +1286,36 @@ body.trac #footer {
 	body.trac #subnav #nav-user:before {
 		font-size: 28px;
 		margin-left: 5px;
+	}
+
+	body.trac #mainnav ul,
+	body.trac #mainnav ul li,
+	body.trac #mainnav ul li :link {
+		height: 100%;
+		width: 100%;
+		border-radius: 0 !important;
+		border: none !important;
+		margin: 0;
+	}
+	body.trac #mainnav ul li :link {
+		padding: 10px;
+		border: none !important;
+	}
+	body.trac #mainnav ul li.active :link,
+	body.trac #mainnav ul li:not(.active) :link:hover {
+		border: none !important;
+		margin: 0;
+	}
+	body.trac #mainnav li {
+		width: 100%;
+	}
+	body.trac #mainnav ul {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	}
+
+	body.trac #search input[type=submit] {
+		display: none;
 	}
 }
 

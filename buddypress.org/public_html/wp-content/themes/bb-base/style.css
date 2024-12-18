@@ -136,11 +136,9 @@ body {
 	order: 1;
 }
 #header h1 a,
-#header h1 :link,
-#header h1 :link:hover,
-#wporg-header h1 :link,
-#wporg-header h1 :link:hover,
-#wporg-header h1 :link:visited {
+#header h1 a:hover,
+#wporg-header h1 a,
+#wporg-header h1 a:hover {
 	border: 0;
 	text-decoration: none;
 	display: block;
@@ -161,6 +159,7 @@ body {
 	width: 100%;
 	height: 400px;
 	line-height: 0;
+	overflow: hidden !important;
 }
 #headline-inner p {
 	position: absolute;
@@ -174,8 +173,8 @@ body {
 #big-demo-button {
 	position: absolute;
 	bottom: 50px;
-	font-size: 1.8em;
-	padding: 15px 30px;
+	font-size: 22px;
+	padding: 25px 35px;
 	text-decoration: none;
 }
 
@@ -289,6 +288,7 @@ a:hover img {
 }
 
 div.content {
+	width: 100%;
 	order: 2;
 	margin-left: auto;
 }
@@ -471,6 +471,7 @@ input[type=reset][disabled] {
 #bb-menu-icon,
 #mobile-menu-button {
 	display: none;
+	border-radius: 0 !important; /* Override all other buttons */
 }
 
 #bb-menu-icon:before,
@@ -497,8 +498,7 @@ input[type=reset][disabled] {
 	align-items: center;
 }
 #nav li a,
-#wporg-header #wporg-header-menu li :link,
-#wporg-header #wporg-header-menu li :visited {
+#wporg-header #wporg-header-menu li a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -512,8 +512,9 @@ input[type=reset][disabled] {
 
 #nav li a:hover,
 #nav li a.active,
-#wporg-header #wporg-header-menu li :link:hover,
-#wporg-header #wporg-header-menu li :link:active {
+#wporg-header #wporg-header-menu li a:hover,
+#wporg-header #wporg-header-menu li a:active {
+	color: var(--bbbase-brightest-white);
 	background-color: var(--bbbase-brightest-white-blend);
 }
 
@@ -1970,7 +1971,7 @@ div.plugin-meta img {
 	#footer-inner {
 		width: 960px;
 	}
-	div.content {
+	body:not(.page-template-page-homepage) div.content {
 		width: 700px;
 	}
 	div.leftcol {
@@ -2025,6 +2026,7 @@ div.plugin-meta img {
 		text-decoration: none;
 		border: none;
 		background: transparent;
+		color: var(--bbbase-darkest-black);
 	}
 
 	#header #nav,
@@ -2047,8 +2049,7 @@ div.plugin-meta img {
 		padding: 0;
 	}
 	#header #nav #bb-nav li a,
-	#wporg-header #wporg-header-menu li :link,
-	#wporg-header #wporg-header-menu li :visited {
+	#wporg-header #wporg-header-menu li a {
 		margin: 0;
 		padding: 0;
 		color: var(--bbbase-darkest-black);
@@ -2056,8 +2057,11 @@ div.plugin-meta img {
 		border-radius: 0;
 	}
 	#header #nav #bb-nav li.current a,
-	#header #nav #bb-nav li a:hover {
-		color: var(--bbbase-brightest-white);
+	#header #nav #bb-nav li a:hover,
+	#wporg-header #wporg-header-menu li.current a,
+	#wporg-header #wporg-header-menu li a:hover {
+		color: var(--bbbase-button-color-hover);
+		background-color: var(--bbbase-button-background-color-hover);
 	}
 	#header #bb-nav,
 	#bbpress-forums .bbp-pagination-count,
@@ -2075,12 +2079,12 @@ div.plugin-meta img {
 	#header #nav:hover #bb-menu-icon,
 	#header #nav:focus #bb-menu-icon,
 	#wporg-header #mobile-menu-button[aria-expanded="true"] {
-		background-color: rgba(255,255,255,0.3);
+		background-color: var(--bbbase-brightest-white-blend);
 	}
 	#header #nav:hover #bb-menu-icon:before,
 	#header #nav:focus #bb-menu-icon:before,
 	#wporg-header #mobile-menu-button[aria-expanded="true"]:before {
-		color: var(--bbbase-brightest-white);
+		color: var(--bbbase-darkest-black);
 	}
 }
 

@@ -19,8 +19,8 @@
 	--bbbase-logo-image-width: 269px;
 
 	/* Buttons */
-	--bbbase-button-background-color: rgba(199, 66, 0, 1);
-	--bbbase-button-background-color-hover: rgba(221, 130, 59, 0.9);
+	--bbbase-button-background-color: rgba(221, 130, 59, 1);
+	--bbbase-button-background-color-hover: rgba(221, 130, 59, 0.8);
 	--bbbase-button-color: rgba(255, 235, 235, 0.9);
 	--bbbase-button-color-hover: rgba(255, 235, 235, 0.9);
 

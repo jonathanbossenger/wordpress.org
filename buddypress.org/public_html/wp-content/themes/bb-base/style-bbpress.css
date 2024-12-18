@@ -20,7 +20,7 @@
 
 	/* Buttons */
 	--bbbase-button-background-color: rgba(0, 153, 51, 1);
-	--bbbase-button-background-color-hover: rgba(0, 153, 51, 1);
+	--bbbase-button-background-color-hover: rgba(0, 153, 51, 0.8);
 	--bbbase-button-color: rgba(235, 255, 235, 0.9);
 	--bbbase-button-color-hover: rgba(235, 255, 235, 0.9);
 

@@ -1735,9 +1735,9 @@ class Plugin_Directory {
 		$plugin   = self::get_plugin_post( $plugin );
 		$releases = get_post_meta( $plugin->ID, 'releases', true );
 
-		// Meta doesn't exist yet? Lets fill it out.
+		// Data doesn't exist yet? Lets fill it out.
 		if ( false === $releases || ! is_array( $releases ) ) {
-			$releases = self::prefill_releses_meta( $plugin );
+			$releases = self::prefill_releases_meta( $plugin );
 		}
 
 		/**
@@ -1756,12 +1756,12 @@ class Plugin_Directory {
 	}
 
 	/**
-	 * Prefill the releases meta for a plugin.
+	 * Prefill the releases meta items for a plugin.
 	 *
 	 * @param \WP_Post $plugin Plugin post object.
 	 * @return array
 	 */
-	public static function prefill_releses_meta( $plugin ) {
+	public static function prefill_releases_meta( $plugin ) {
 		if ( ! $plugin->releases ) {
 			update_post_meta( $plugin->ID, 'releases', [] );
 		}

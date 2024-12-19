@@ -727,7 +727,7 @@ function wporg_support_get_slack_username( $user_id = 0 ) {
 
 	$data = wp_cache_get( "user_id:$user_id", 'slack_data' );
 	if ( false === $data ) {
-		$data = $wpdb->get_var( $wpdb->prepare( "SELECT profiledata FROM slack_users WHERE user_id = %d", $user_id ) );
+		$data = $wpdb->get_var( $wpdb->prepare( "SELECT profiledata FROM slack_users WHERE user_id = %d ORDER BY deactivated ASC LIMIT 1", $user_id ) );
 
 		// Cache nonexistence as an empty string.
 		wp_cache_add( "user_id:$user_id", (string) $data, 'slack_data', 1800 );

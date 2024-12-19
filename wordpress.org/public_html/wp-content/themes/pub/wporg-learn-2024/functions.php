@@ -362,6 +362,7 @@ function add_site_navigation_menus( $menus ) {
 		array(
 			'taxonomy'   => 'learning-pathway',
 			'hide_empty' => true,
+			'order'      => 'DESC',
 		)
 	);
 

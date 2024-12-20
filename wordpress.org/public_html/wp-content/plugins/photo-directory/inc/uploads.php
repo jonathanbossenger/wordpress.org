@@ -345,19 +345,35 @@ class Uploads {
 	 * @return string
 	 */
 	public static function disable_frontend_uploader_shortcode_unless_logged_in( $output, $tag ) {
-		if ( ! is_user_logged_in() ) {
-			$fu_shortcodes = [
-				'fu-upload-form',
-				'fu-upload-response',
-			];
+		$fu_shortcodes = [
+			'fu-upload-form',
+			'fu-upload-response',
+		];
+		$is_fu_shortcode = in_array( $tag, $fu_shortcodes, true );
 
-			if ( in_array( $tag, $fu_shortcodes ) ) {
-				$output = '<p>'
-					. sprintf(
-						__( 'Please <a href="%s">log in or create an account</a> so you can upload a photo.', 'wporg-photos' ),
-						esc_url( wp_login_url( get_permalink() ) ) )
-					. '</p>';
-			}
+		if ( ! is_user_logged_in() && $is_fu_shortcode ) {
+			$output = '<p>'
+				. sprintf(
+					__( 'Please <a href="%s">log in or create an account</a> so you can upload a photo.', 'wporg-photos' ),
+					esc_url( wp_login_url( get_permalink() ) ) )
+				. '</p>';
+		} elseif ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY && $is_fu_shortcode ) {
+			$output = do_blocks(
+				sprintf(
+					'<!-- wp:wporg/notice {"type":"warning"} -->
+					<div class="wp-block-wporg-notice is-warning-notice">
+						<div class="wp-block-wporg-notice__icon"></div>
+						<div class="wp-block-wporg-notice__content">
+							<p>%s</p>
+						</div>
+					</div>
+					<!-- /wp:wporg/notice -->',
+					sprintf(
+						__( 'New photo submissions are currently disabled. Please check back after the <a href="%s">holiday break.</a>', 'wporg-photos' ),
+						'https://wordpress.org/news/2024/12/holiday-break/'
+					)
+				)
+			);
 		}
 
 		return $output;

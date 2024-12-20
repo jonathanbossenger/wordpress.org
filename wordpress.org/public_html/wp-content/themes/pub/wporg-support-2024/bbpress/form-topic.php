@@ -30,6 +30,32 @@
 					} ?>
 				</h2>
 
+				<?php
+				if (
+					defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY &&
+					bbp_is_single_view() && 'reviews' === bbp_get_view_id()
+				) {
+					echo do_blocks(
+						sprintf(
+							'<!-- wp:wporg/notice {"type":"warning"} -->
+							<div class="wp-block-wporg-notice is-warning-notice">
+								<div class="wp-block-wporg-notice__icon"></div>
+								<div class="wp-block-wporg-notice__content">
+									<p>%s</p>
+								</div>
+							</div>
+							<!-- /wp:wporg/notice -->',
+							sprintf(
+								__( 'New reviews are currently disabled. Please check back after the <a href="%s">holiday break.</a>', 'wporg-forums' ),
+								'https://wordpress.org/news/2024/12/holiday-break/'
+							)
+						)
+					);
+					echo '</form></div>';
+					return;
+				}
+				?>
+
 			<?php } ?>
 
 			<fieldset class="bbp-form">

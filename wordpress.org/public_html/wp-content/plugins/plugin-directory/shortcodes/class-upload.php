@@ -388,7 +388,15 @@ class Upload {
 
 		<?php endif; // ! is_wp_error( $upload_result )
 
-		if ( is_email_address_unsafe( wp_get_current_user()->user_email ) ) {
+		if ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY ) {
+			printf(
+				'<div class="notice notice-error notice-alt"><p>%s</p></div>',
+				sprintf(
+					__( 'New plugin submissions are currently disabled. <a href="%s">Please check back after the holiday period.</a>', 'wporg-plugins' ),
+					'https://wordpress.org/news/2024/12/holiday-break/'
+				)
+			);
+		} else if ( is_email_address_unsafe( wp_get_current_user()->user_email ) ) {
 			echo '<div class="notice notice-error notice-alt"><p>' .
 				sprintf(
 					/* translators: %s: Profile edit url. */

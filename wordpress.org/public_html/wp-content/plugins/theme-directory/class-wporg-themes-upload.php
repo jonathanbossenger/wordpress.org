@@ -454,6 +454,16 @@ class WPORG_Themes_Upload {
 		$is_new_upload = empty( $this->theme_post );
 		$is_update     = ! $is_new_upload;
 
+		if ( $is_new_upload && defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY ) {
+			return new WP_Error(
+				'submissions_disabled',
+				sprintf(
+					__( 'New theme submissions are currently disabled. Please check back after the <a href="%s">holiday break.</a>', 'wporg-themes' ),
+					'https://wordpress.org/news/2024/12/holiday-break/'
+				)
+			);
+		}
+
 		// Populate author.
 		if ( ! $this->author ) {
 			if ( is_user_logged_in() ) {
@@ -934,6 +944,10 @@ class WPORG_Themes_Upload {
 	 * @return WP_Post|null
 	 */
 	public function get_theme_post() {
+		if ( empty( $this->theme_slug ) ) {
+			return null;
+		}
+
 		$themes = get_posts( array(
 			'name'             => $this->theme_slug,
 			'posts_per_page'   => 1,

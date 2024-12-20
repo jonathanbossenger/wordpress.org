@@ -56,6 +56,26 @@ function wporg_themes_render_upload_shortcode() {
 	$notice       = '';
 	$terms_notice = '';
 
+	if ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY ) {
+		$notice = sprintf(
+			'<div class="wp-block-wporg-notice is-warning-notice">
+				<div class="wp-block-wporg-notice__icon"></div>
+				<div class="wp-block-wporg-notice__content">
+					<p>%s</p>
+				</div>
+			</div>',
+			sprintf(
+				__( 'New theme submissions are currently disabled. Please check back after the <a href="%s">holiday break.</a>', 'wporg-themes' ),
+				'https://wordpress.org/news/2024/12/holiday-break/'
+			)
+		);
+
+		// Updates can still occur.
+		if ( ! wporg_themes_has_theme() ) {
+			return $notice;
+		}
+	}
+
 	if (
 		! empty( $_POST['_wpnonce'] ) &&
 		wp_verify_nonce( $_POST['_wpnonce'], 'wporg-themes-upload' ) &&

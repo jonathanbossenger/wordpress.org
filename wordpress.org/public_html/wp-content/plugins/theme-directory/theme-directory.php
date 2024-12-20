@@ -1577,3 +1577,29 @@ function wporg_themes_status_change_stats( $new_status, $old_status, $post ) {
 	bump_stats_extra( 'themes', 'status-' . $stat );
 }
 add_action( 'transition_post_status', 'wporg_themes_status_change_stats', 10, 3 );
+
+/**
+ * Check if a user has any themes.
+ *
+ * @param int|WP_User $user_id
+ * @param array       $status  The status of the themes to check for.
+ *
+ * @return bool
+ */
+function wporg_themes_has_theme( $user_id = 0, $status = [ 'publish', 'draft' ] ) {
+	if ( is_object( $user_id ) ) {
+		$user_id = $user_id->ID;
+	} elseif ( ! $user_id ) {
+		$user_id = get_current_user_id();
+	}
+
+	$themes = get_posts( [
+		'post_type'   => 'repopackage',
+		'post_status' => $status,
+		'author'      => $user_id,
+		'numberposts' => 1,
+		'fields'      => 'ids',
+	] );
+
+	return (bool) $themes;
+}

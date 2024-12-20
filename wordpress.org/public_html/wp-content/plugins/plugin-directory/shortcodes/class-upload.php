@@ -392,7 +392,7 @@ class Upload {
 			printf(
 				'<div class="notice notice-error notice-alt"><p>%s</p></div>',
 				sprintf(
-					__( 'New plugin submissions are currently disabled. <a href="%s">Please check back after the holiday period.</a>', 'wporg-plugins' ),
+					__( 'New plugin submissions are currently disabled. Please check back after the <a href="%s">holiday break.</a>', 'wporg-plugins' ),
 					'https://wordpress.org/news/2024/12/holiday-break/'
 				)
 			);

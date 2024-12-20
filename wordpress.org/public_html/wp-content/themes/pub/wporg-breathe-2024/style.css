@@ -1778,6 +1778,10 @@ nav.o2-post-footer-actions ul li > span > a.genericon:before {
 	color: var(--wp--custom--link--color--text);
 }
 
+#o2-flash .o2-notification p {
+	margin: auto;
+}
+
 /*
  * Make Welcome
  */

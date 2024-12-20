@@ -20,6 +20,13 @@ if ( is_user_logged_in() ) {
 	exit;
 }
 
+$user_registration_available = true;
+$is_wordcamp_registration    = str_contains( $_COOKIE['wporg_came_from'] ?? ( $_REQUEST['from'] ?? '' ), '.wordcamp.org' );
+
+if ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY && ! $is_wordcamp_registration ) {
+	$user_registration_available = false;
+}
+
 $error_user_login = $error_user_email = $error_recapcha_status = $terms_of_service_error = false;
 if ( $_POST ) {
 
@@ -43,10 +50,8 @@ if ( $_POST ) {
 	// Let the post-login interstitial handle TOS updates at time of registration.
 	$terms_of_service_error = ! $terms_of_service || $terms_of_service > TOS_REVISION;
 
-	$wporg_on_holiday = defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY;
-
 	// handle user registrations.
-	if ( ! $wporg_on_holiday && ! $error_user_login && ! $error_user_email && ! $terms_of_service_error ) {
+	if ( $user_registration_available && ! $error_user_login && ! $error_user_email && ! $terms_of_service_error ) {
 
 		$recaptcha = wporg_login_check_recapcha_status( 'register', false /* Allow low scores to pass through */ );
 
@@ -72,7 +77,7 @@ get_header();
 
 ?>
 
-<?php if ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY ) : ?>
+<?php if ( ! $user_registration_available ) : ?>
 		<p><?php printf( __( 'New user registration is currently unavailable. Please check back after the <a href="%s">holiday break</a>.', 'wporg' ), 'https://wordpress.org/news/2024/12/holiday-break/' ); ?></p>
 <?php else: ?>
 

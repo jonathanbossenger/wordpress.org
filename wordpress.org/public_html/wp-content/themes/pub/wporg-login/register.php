@@ -21,7 +21,11 @@ if ( is_user_logged_in() ) {
 }
 
 $user_registration_available = true;
-$is_wordcamp_registration    = str_contains( $_COOKIE['wporg_came_from'] ?? ( $_REQUEST['from'] ?? '' ), '.wordcamp.org' );
+$registration_source         = $_COOKIE['wporg_came_from'] ?? ( $_REQUEST['from'] ?? '' );
+$is_wordcamp_registration    = (
+	str_contains( $registration_source, '.wordcamp.org' ) ||
+	str_contains( $registration_source, 'events.wordpress.org')
+);
 
 if ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY && ! $is_wordcamp_registration ) {
 	$user_registration_available = false;

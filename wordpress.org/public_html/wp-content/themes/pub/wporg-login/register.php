@@ -43,8 +43,10 @@ if ( $_POST ) {
 	// Let the post-login interstitial handle TOS updates at time of registration.
 	$terms_of_service_error = ! $terms_of_service || $terms_of_service > TOS_REVISION;
 
+	$wporg_on_holiday = defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY;
+
 	// handle user registrations.
-	if ( ! $error_user_login && ! $error_user_email && ! $terms_of_service_error ) {
+	if ( ! $wporg_on_holiday && ! $error_user_login && ! $error_user_email && ! $terms_of_service_error ) {
 
 		$recaptcha = wporg_login_check_recapcha_status( 'register', false /* Allow low scores to pass through */ );
 
@@ -67,7 +69,12 @@ if ( $_POST ) {
 wp_enqueue_script( 'wporg-registration' );
 
 get_header();
+
 ?>
+
+<?php if ( defined( 'WPORG_ON_HOLIDAY' ) && WPORG_ON_HOLIDAY ) : ?>
+		<p><?php printf( __( 'New user registration is currently unavailable. Please check back after the <a href="%s">holiday break</a>.', 'wporg' ), 'https://wordpress.org/news/2024/12/holiday-break/' ); ?></p>
+<?php else: ?>
 
 <p class="intro"><?php _e( 'Create a WordPress.org account to start contributing to WordPress, get help in the support forums, or rate and review themes and plugins.', 'wporg' ); ?></p>
 
@@ -140,6 +147,8 @@ get_header();
 	</p>
 
 </form>
+
+<?php endif; // WPORG_ON_HOLIDAY else ?>
 
 <p id="nav">
 	<a href="/" title="<?php esc_attr_e( 'Already have an account?', 'wporg' ); ?>"><?php _e( 'Already have an account?', 'wporg' ); ?></a> &nbsp; • &nbsp;

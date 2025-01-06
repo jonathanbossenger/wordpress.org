@@ -14,7 +14,7 @@ if ( ! is_string( $username ) ) {
 }
 
 // Redirect is validated at redirect time, just pass through whatever we can.
-if ( ! empty( $_REQUEST['redirect_to'] ) ) {
+if ( ! empty( $_REQUEST['redirect_to'] ) && is_string( $_REQUEST['redirect_to'] ) ) {
 	$redirect = wp_unslash( $_REQUEST['redirect_to'] );
 } elseif ( $referer = wp_get_referer() ) {
 	$redirect = $referer;
@@ -47,7 +47,7 @@ if ( ! empty( $_REQUEST['redirect_to'] ) ) {
 </form>
 
 <p id="nav">
-	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php _e( 'Password Lost and Found', 'wporg' ); ?>"><?php _e( 'Lost password?', 'wporg' ); ?></a> &nbsp; • &nbsp;
+	<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" title="<?php _e( 'Lost your password?', 'wporg' ); ?>"><?php _e( 'Lost your password?', 'wporg' ); ?></a> &nbsp; • &nbsp;
 	<a href="<?php echo esc_url( wp_registration_url() ); ?>" title="<?php _e( 'Create an account', 'wporg' ); ?>"><?php _e( 'Create an account', 'wporg' ); ?></a>
 </p>
 

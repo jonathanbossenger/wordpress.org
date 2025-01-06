@@ -345,8 +345,10 @@ class Status_Transitions {
 			'post_name' => $slug,
 		) );
 
-		delete_post_meta( $post_id, '_rejection_reason' );
-		delete_post_meta( $post_id, 'plugin_rejected_date' );
+		delete_post_meta( $post->ID, '_rejection_reason' );
+		delete_post_meta( $post->ID, 'plugin_rejected_date' );
+
+		Tools::audit_log( 'Plugin rejection reverted.', $post->ID );
 	}
 
 	/**

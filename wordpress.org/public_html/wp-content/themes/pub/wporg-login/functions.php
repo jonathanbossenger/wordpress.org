@@ -615,3 +615,21 @@ function wporg_remember_where_user_came_from_redirect( $redirect, $requested_red
 	return $redirect;
 }
 add_filter( 'login_redirect', 'wporg_remember_where_user_came_from_redirect', 100, 3 );
+
+/**
+ * Use the same separator on the login page as the rest of the site.
+ */
+add_filter( 'login_link_separator', function() {
+	return '&nbsp; • &nbsp;';
+} );
+
+/**
+ * Use the same text on the registration link.
+ */
+add_filter( 'register', function( $link ) {
+	return str_replace(
+		'>' . __( 'Register' ) . '<',
+		'>' . __( 'Create an account', 'wporg' ) . '<',
+		$link
+	);
+} );

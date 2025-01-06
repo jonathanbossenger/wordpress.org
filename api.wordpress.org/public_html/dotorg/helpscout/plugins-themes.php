@@ -175,11 +175,11 @@ function display_items( $post_ids ) {
 
 			// Append Info URL.
 			if (
-				$download_url &&
+				$download_link &&
 				str_starts_with( $request->mailbox->email ?? '' , 'plugins' ) &&
 				class_exists( '\WordPressdotorg\Plugin_Directory\API\Routes\Plugin_Review' )
 			) {
-				$download_url = \WordPressdotorg\Plugin_Directory\API\Routes\Plugin_Review::append_plugin_review_info_url( $download_url, $post );
+				$download_link = \WordPressdotorg\Plugin_Directory\API\Routes\Plugin_Review::append_plugin_review_info_url( $ownload_link, $post );
 			}
 		}
 

@@ -92,7 +92,7 @@ switch ( $action ) {
 			$slugs = $request->slugs ?? '';
 			$slugs = is_array( $slugs ) ? $slugs : explode( ',', $slugs );
 
-			if ( ! $slug ) {
+			if ( ! $slugs ) {
 				send_error( 'Slugs not provided' );
 			}
 

@@ -206,6 +206,11 @@ if ( ! class_exists( 'WPOrg_SSO' ) ) {
 				$host = parse_url( $host, PHP_URL_HOST );
 			}
 
+			// Bail if the string did not actually have a hostname within it.
+			if ( empty( $host ) ) {
+				return false;
+			}
+
 			if ( $host === $this->sso_host ) {
 				return true;
 			}

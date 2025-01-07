@@ -135,7 +135,7 @@ function api_request( $url, $args = null, $headers = [], $method = null ) {
 		'method'        => $method ?: ( is_null( $args ) ? 'GET' : 'POST' ),
 		'user_agent'    => 'WordPress.org Trac; trac.WordPress.org',
 		'max_redirects' => 0,
-		'timeout'       => 5,
+		'timeout'       => 10,
 		'ignore_errors' => true,
 		'header'        => array_merge(
 			[

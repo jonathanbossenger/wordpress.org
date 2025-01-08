@@ -266,7 +266,7 @@ function determine_trac_ticket( $pr ) {
 
 			// If a specific trac is mentioned within the PR body (and only that trac)
 			elseif (
-				preg_match_all( '!/(?P<trac>[a-z]+).trac.wordpress.org/!i', $body, $m ) &&
+				preg_match_all( '!/(?P<trac>[a-z]+).trac.wordpress.org/!i', $pr->body, $m ) &&
 				1 === count( array_unique( $m[0] ) )
 			) {
 				$trac = $m['trac'][0];

@@ -600,15 +600,15 @@ function add_svg_icon_to_site_name() {
 		return;
 	}
 
-	printf( '<svg aria-hidden="true" role="img" viewBox="%s" xmlns="http://www.w3.org/2000/svg">' . "\n", esc_attr( $svg['viewbox'] ) );
+	printf( '<svg aria-hidden="true" role="img" viewBox="%s" xmlns="http://www.w3.org/2000/svg">' . "\n", esc_attr( $svg['viewbox'] ?? '' ) );
 
 	foreach ( $svg['paths'] as $path ) {
 		printf(
 			"\t" . '<path d="%s" stroke="%s" fill="currentColor" fill-rule="%s" clip-rule="%s"/>' . "\n",
 			esc_attr( $path ),
 			esc_attr( $svg['pathStroke'] ?? 'currentColor' ),
-			esc_attr( $svg['pathFillRule'] ),
-			esc_attr( $svg['pathClipRule'] )
+			esc_attr( $svg['pathFillRule'] ?? '' ),
+			esc_attr( $svg['pathClipRule'] ?? '' )
 		);
 	}
 

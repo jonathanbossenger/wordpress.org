@@ -197,7 +197,7 @@ function _maybe_add_login_item_to_menu( $menus ) {
 		'url' => wp_login_url( $redirect_url ),
 	);
 
-	if ( $menus['breathe'] ) {
+	if ( ! empty( $menus['breathe'] ) ) {
 		$login_item['className'] = 'has-separator';
 		$menus['breathe'][] = $login_item;
 	} else {

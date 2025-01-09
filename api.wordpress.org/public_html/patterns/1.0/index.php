@@ -81,7 +81,7 @@ function main( $query_string ) {
 
 	$wp_init_host = $api_url_base . $endpoint . '?' . urldecode( http_build_query( $query_args ) );
 
-	ob_start( __NAMESPACE__ . '\flush_handler', 8192 );
+	ob_start( __NAMESPACE__ . '\flush_handler' );
 
 	// Load WordPress to process the request and output the response.
 	require_once dirname( dirname( __DIR__ ) ) . '/wp-init.php';

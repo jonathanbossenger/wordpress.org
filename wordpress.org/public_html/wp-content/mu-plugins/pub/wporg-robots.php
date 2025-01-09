@@ -83,6 +83,7 @@ function wporg_robots_prefix_sitemaps( $robots ) {
 	}
 
 	// Should all sub-sites sitemaps be included?
+	$should_include_subsite_sitemaps = false;
 	if (
 		'developer.wordpress.org' === $blog_details->domain ||
 		'make.wordpress.org' === $blog_details->domain

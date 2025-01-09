@@ -103,7 +103,7 @@ class SVN_Watcher {
 				 *
 				 * See Status_Transitions::approved_create_svn_repo()
 				 */
-				if ( preg_match( '/^Adding (.+) by (.+)\.$/i', $log['msg'] ) ) {
+				if ( preg_match( '/^Adding (.+) by (.+)\.$/i', $log['message'] ) ) {
 					continue;
 				}
 
@@ -111,7 +111,7 @@ class SVN_Watcher {
 				 * If the commit includes an "Author:" byline, we'll use that as the actual author.
 				 * This can be used for automated commits that are made on behalf of a user.
 				 */
-				if ( preg_match( '/^Author: (.+)\.$/im', $log['msg'], $matches ) ) {
+				if ( preg_match( '/^Author: (.+)\.$/im', $log['message'], $matches ) ) {
 					$log['author'] = $matches[1];
 				}
 			}

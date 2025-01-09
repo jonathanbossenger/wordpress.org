@@ -56,6 +56,10 @@ if ( ! class_exists( 'WPOrg_Profiles_Activity_Handler' ) ) {
 		 * @return WP_User|false WP_User object on success, false on failure.
 		 */
 		protected static function get_user( $username ) {
+			if ( empty( $username ) ) {
+				return false;
+			}
+
 			if ( is_numeric( $username ) && ( absint( $username ) == $username ) ) {
 				$user = get_user_by( 'id', $username );
 			} else {
@@ -285,12 +289,11 @@ if ( ! class_exists( 'WPOrg_Profiles_Activity_Handler' ) ) {
 		 */
 		public static function maybe_update_last_activity() {
 
-			$user = self::get_user( $_POST['user'] );
-			
+			$user = self::get_user( $_POST['user'] ?? ( $_POST['user_id'] ?? 0 ) );
 			if ( ! $user ) {
 				return;
 			}
-			
+
 			$user_activity_cache_key = 'wporg-user-activity-logger-' . $user->ID;
 
 			// Adds some caching to avoid unnecessary updates since we only store day.

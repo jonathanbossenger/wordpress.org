@@ -800,6 +800,9 @@ https://wordpress.org/photos/
 			#dashboard-photo-moderators .col-num-rejected {
 				width: 50px;
 			}
+			#dashboard-photo-moderators .col-last-mod-date {
+				width: 80px;
+			}
 CSS;
 		echo "</style>\n";
 
@@ -808,7 +811,7 @@ CSS;
 		echo '<th>' . __( 'Moderator', 'wporg-photos' ) . '</th>';
 		echo '<th class="col-num-approved" title="' . esc_attr__( 'Number of photos approved', 'wporg-photos' ) . '"><span class="dashicons dashicons-thumbs-up"></span></th>';
 		echo '<th class="col-num-rejected" title="' . esc_attr__( 'Number of photos rejected', 'wporg-photos' ) . '"><span class="dashicons dashicons-thumbs-down"></span></th>';
-		echo '<th>' . __( 'Last Moderated', 'wporg-photos' ) . '</th>';
+		echo '<th class="col-last-mod-date">' . __( 'Last Moderated', 'wporg-photos' ) . '</th>';
 		echo '</tr></thead>';
 		echo '<tbody>';
 

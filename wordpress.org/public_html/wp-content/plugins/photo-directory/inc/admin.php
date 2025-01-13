@@ -1685,7 +1685,7 @@ class Admin {
 		global $post_type;
 
 		if ( Registrations::get_post_type() === $post_type ) {
-			$settings['editor_height'] = '80px';
+			$settings['editor_height'] = '80';
 		}
 
 		return $settings;

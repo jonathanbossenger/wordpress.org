@@ -89,6 +89,12 @@ a img { border: 1px solid transparent; }
 	/* Form Field Colors */
 	--bbbase-form-field-background-color: rgba(255, 255, 255, 1);
 	--bbbase-form-field-outline-color: rgba(102, 128, 189, 1);
+
+	/* Fonts */
+	--bbbase-font-base: 100 16px/1.5 'Inter', sans-serif;
+	--bbbase-font-code: 400 14px/14px monospace;
+	--bbbase-font-dashicons: 400 20px/1 'dashicons';
+	--bbbase-font-input: 400 14px/16px sans-serif;
 }
 
 /* =Site Style
@@ -99,10 +105,10 @@ html {
 	padding: 0;
 }
 body {
-	font: 100 16px/1.5 Inter, sans-serif;
-	text-align: left;
 	background: var(--bbbase-brightest-white);
 	color: var(--bbbase-darkest-text-color-low-contrast);
+	font: var(--bbbase-font-base);
+	text-align: left;
 	margin: 0;
 }
 .hide-if-js {
@@ -476,7 +482,8 @@ input[type=reset][disabled] {
 
 #bb-menu-icon:before,
 #mobile-menu-button:before {
-	font: normal 16px/1 'dashicons';
+	font: var(--bbbase-font-dashicons);
+	font-size: 16px;
 	color: var(--bbbase-darkest-black);
 	content: '\f349';
 	flex-shrink: 0;
@@ -816,7 +823,7 @@ select {
 	color: var(--bbbase-form-field-color);
 	border: 1px solid var(--bbbase-grey-border-color-low-contrast);
 	border-radius: var(--bbbase-border-radius);
-	font: 14px/16px sans-serif;
+	font: var(--bbbase-font-input);
 	padding: 5px 10px;
 }
 input.submit {
@@ -883,7 +890,7 @@ img.centered {
 .commentlist li,
 #commentform input,
 #commentform textarea {
-	font: 100 16px/1.5 Inter, sans-serif;
+	font: var(--bbbase-font-base);
 }
 .commentlist {
 	padding: 0;
@@ -1286,7 +1293,9 @@ body.reply-edit #bbpress-forums fieldset legend {
 
 #bbpress-forums ul.sticky li.bbp-topic-title:before,
 #bbpress-forums ul.super-sticky li.bbp-topic-title:before {
-	font: normal 20px/20px 'dashicons';
+	font: var(--bbbase-font-dashicons);
+	font-size: 20px;
+	line-height: 20px;
 	content: '\f450';
 	margin-right: 5px;
 	float: left;
@@ -1634,7 +1643,9 @@ body.bbp-user-edit #bbp-user-wrapper #bbp-user-body {
 .sidebar .forum-info li:before,
 .sidebar .topic-info li:before,
 .sidebar div ul li a:before {
-	font: normal 16px/23px 'dashicons';
+	font: var(--bbbase-font-dashicons);
+	font-size: 16px;
+	line-height: 23px;
 	margin-right: 5px;
 	color: var(--bbbase-darkest-black);
 }

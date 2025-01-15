@@ -982,14 +982,14 @@ class Import {
 			$children = array_filter(
 				$blocks,
 				function( $block ) {
-					return isset( $block->parent ) && count( $block->parent );
+					return isset( $block->parent ) && is_array( $block->parent ) && count( $block->parent );
 				}
 			);
 
 			$parent = array_filter(
 				$blocks,
 				function( $block ) {
-					return ! isset( $block->parent ) || ! count( $block->parent );
+					return ! isset( $block->parent ) || ! is_array( $block->parent ) || ! count( $block->parent );
 				}
 			);
 

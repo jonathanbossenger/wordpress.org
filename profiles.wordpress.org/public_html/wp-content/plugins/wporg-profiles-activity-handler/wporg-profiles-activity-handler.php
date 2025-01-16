@@ -60,9 +60,13 @@ if ( ! class_exists( 'WPOrg_Profiles_Activity_Handler' ) ) {
 				return false;
 			}
 
+			$user = false;
+
 			if ( is_numeric( $username ) && ( absint( $username ) == $username ) ) {
 				$user = get_user_by( 'id', $username );
-			} else {
+			}
+		   
+			if ( ! $user ) {
 				$user = get_user_by( 'login', $username );
 			}
 

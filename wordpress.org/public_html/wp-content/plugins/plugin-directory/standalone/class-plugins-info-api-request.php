@@ -329,11 +329,15 @@ class Plugins_Info_API_Request {
 
 		}
 
-		// Validate the locale is in an expected supported format, for all endpoints.
-		if (
-			! is_string( $this->locale ) ||
-			! preg_match( '!^[a-z]{2,3}(_([A-Z]{2}))?(_([a-z0-9]+))?$!', $this->locale )
-		) {
+		/*
+		 * Validate the locale is in an expected supported format, for all endpoints.
+		 *
+		 * Note: Do not validate the locale is valid, as this will cause the endpoints to not
+		 *       fail for WordPress sites with malformed WPLOCALE constants on their site.
+		 *       By only validating it's a string, we're ensuring that only non-WordPress clients
+		 *       should ever hit a block due to invalid passed data.
+		 */
+		if ( ! is_string( $this->locale ) ) {
 			return false;
 		}
 

@@ -408,7 +408,7 @@ class Review_Tools {
 			}, $committers );
 
 			$cc_emails = wp_list_pluck( $committers, 'user_email' );
-			$cc_emails = implode( ', ', array_diff( $cc_emails, array( $author->user_email ) ) );
+			$cc_emails = implode( ',', array_diff( $cc_emails, array( $author->user_email ) ) );
 
 			if ( 'new' === $post->post_status || 'pending' === $post->post_status ) {
 				/* translators: %s: Plugin Title */

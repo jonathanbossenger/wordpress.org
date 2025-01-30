@@ -285,7 +285,7 @@ class Language_Pack extends WP_CLI_Command {
 
 		$plugin = json_decode( $plugin );
 
-		return $plugin->stable_tag;
+		return $plugin->stable_tag ?? false;
 	}
 
 	/**
@@ -306,7 +306,7 @@ class Language_Pack extends WP_CLI_Command {
 
 		$theme = json_decode( $theme );
 
-		return $theme->version;
+		return $theme->version ?? false;
 	}
 
 	/**
@@ -327,7 +327,7 @@ class Language_Pack extends WP_CLI_Command {
 
 		$plugin = json_decode( $plugin );
 
-		return $plugin->version;
+		return $plugin->version ?? false;
 	}
 
 	/**

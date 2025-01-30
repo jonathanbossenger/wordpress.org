@@ -1863,7 +1863,7 @@ class Plugin_Directory {
 
 		// Fill the $release with the newish data. This could/should use wp_parse_args()?
 		foreach ( $data as $k => $v ) {
-			if ( is_array( $release[ $k ] ) ) {
+			if ( isset( $release[ $k ] ) && is_array( $release[ $k ] ) ) {
 				$release[ $k ] = array_unique( array_merge( $release[ $k ], $v ) );
 			} else {
 				$release[ $k ] = $v;

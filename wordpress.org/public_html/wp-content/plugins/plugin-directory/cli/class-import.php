@@ -1304,7 +1304,8 @@ class Import {
 
 			$has_self_install_step = false;
 			if ( isset( $decoded_file[ 'steps' ] ) ) {
-				$decoded_file[ 'steps' ] = array_filter( $decoded_file[ 'steps' ] ); // Null items are often present in auto-generated blueprints.
+				// Null & falsey items are often present in auto-generated blueprints, reindex to avoid serialising to an object.
+				$decoded_file[ 'steps' ] = array_values( array_filter( $decoded_file[ 'steps' ] ) );
 
 				foreach ( $decoded_file[ 'steps' ] as &$step ) {
 					// Normalize a "install plugin from url" to a install-by-slug.

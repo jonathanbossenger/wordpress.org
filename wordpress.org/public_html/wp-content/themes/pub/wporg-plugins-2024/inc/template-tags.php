@@ -104,9 +104,9 @@ function the_author_byline( $post = null ) {
 		return;
 	}
 
-	$url    = get_post_meta( $post->ID, 'header_author_uri', true );
-	$author = strip_tags( get_post_meta( $post->ID, 'header_author', true ) ) ?: get_the_author();
-	$author = $url ? '<a class="url fn n" rel="nofollow" href="' . esc_url( $url ) . '">' . $author . '</a>' : $author;
+	$url    = get_author_posts_url( $post->post_author ); 
+	$author = strip_tags( get_the_author_meta( 'display_name', $post->post_author ) ) ?: get_the_author();
+	$author = $url ? '<a class="url fn n" href="' . esc_url( $url ) . '">' . $author . '</a>' : $author;
 
 	/* translators: post author. */
 	printf( esc_html_x( 'By %s', 'post author', 'wporg-plugins' ), '<span class="author vcard">' . wp_kses_post( $author ) . '</span>' );

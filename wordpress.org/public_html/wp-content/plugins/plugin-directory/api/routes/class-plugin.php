@@ -103,13 +103,15 @@ class Plugin extends Base {
 		$result['slug']    = $post->post_name;
 		$result['version'] = get_post_meta( $post_id, 'version', true ) ?: '0.0';
 
-		$result['author'] = strip_tags( get_post_meta( $post_id, 'header_author', true ) ) ?: get_user_by( 'id', $post->post_author )->display_name;
-		if ( false != ( $author_url = get_post_meta( $post_id, 'header_author_uri', true ) ) ) {
-			$result['author'] = sprintf( '<a href="%s">%s</a>', esc_url_raw( $author_url ), $result['author'] );
-		}
+		$profile_url = $this->get_user_profile_link( $post->post_author );
+		$result['author'] = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url_raw( $profile_url ),
+			( strip_tags( get_post_meta( $post_id, 'header_author', true ) ) ?: get_user_by( 'id', $post->post_author )->display_name )
+		);
 
 		// Profile of the original plugin submitter
-		$result['author_profile'] = $this->get_user_profile_link( $post->post_author );
+		$result['author_profile'] = $profile_url;
 		$result['contributors']   = array();
 
 		$contributors = get_terms( array(

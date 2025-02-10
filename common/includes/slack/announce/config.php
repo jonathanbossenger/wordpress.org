@@ -96,6 +96,7 @@ function get_whitelist() {
 			'annezazu',
 			'antpb',
 			'audrasjb',
+			'Benjamin_Zekavica', //@Benjamin Zekavica on Slack
 			'Boniu91', // @Piotrek Boniu on Slack
 			'cbringmann', // @Chloé Bringmann on Slack
 			'chaion07',

@@ -43,7 +43,7 @@ var wpTrac, coreKeywordList, gardenerKeywordList, reservedTerms, coreFocusesList
 		'accessibility' : 'Accessibility focus.',
 		'javascript' : 'Heavy JavaScript focus.',
 		'css' : 'CSS focus.',
-		// 'unit tests' : 'PHP or JS unit tests.',
+		'tests' : 'Ticket solely aimed at adding tests, but assigned a more specific component.',
 		'docs' : 'Inline documentation focus.',
 		'rtl' : 'Right-to-left languages.',
 		'administration' : 'Administration related, but assigned a more specific component.',

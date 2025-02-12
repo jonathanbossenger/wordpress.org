@@ -103,6 +103,7 @@ class wporg_trac_notifications {
 				'rtl',
 				'sustainability',
 				'template',
+				'tests',
 				'ui',
 				'ui-copy',
 			);

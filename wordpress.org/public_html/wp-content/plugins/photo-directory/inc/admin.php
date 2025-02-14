@@ -216,6 +216,7 @@ class Admin {
 	 * - Custom Fields
 	 * - Likes (from Jetpack)
 	 * - Slug
+	 * - Featured Image
 	 */
 	public static function remove_metaboxes() {
 		$post_type = Registrations::get_post_type();
@@ -223,6 +224,7 @@ class Admin {
 		$hide = [
 			'likes_meta' => 'side',
 			'postcustom' => 'normal',
+			'postimagediv' => 'side',
 			'slugdiv'    => 'normal',
 		];
 

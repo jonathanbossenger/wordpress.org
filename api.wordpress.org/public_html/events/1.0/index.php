@@ -1084,6 +1084,8 @@ function build_sticky_wordcamp_query( $request_args, $distance ) {
  *
  * Externalizing this makes it easier to test the `maybe_add_regional_wordcamps` function.
  *
+ * TODO: Figure out a way to automate this, as the current manual process is not sustainable.
+ *
  * @return array
  */
 function get_regional_wordcamp_data() {
@@ -1101,19 +1103,19 @@ function get_regional_wordcamp_data() {
 			'event' => array(
 				'type'       => 'wordcamp',
 				'title'      => 'WordCamp Asia',
-				'url'        => 'https://asia.wordcamp.org/2024/',
+				'url'        => 'https://asia.wordcamp.org/2025/',
 				'meetup'     => '',
 				'meetup_url' => '',
-				'date'       => '2024-03-07 00:00:00',
-				'end_date'   => '2024-03-09 00:00:00',
-				'start_unix_timestamp' => strtotime( '2024-03-07 00:00:00' ) - 8 * HOUR_IN_SECONDS,
-				'end_unix_timestamp'   => strtotime( '2024-03-09 00:00:00' ) - 8 * HOUR_IN_SECONDS,
+				'date'       => '2025-02-20 00:00:00',
+				'end_date'   => '2025-02-22 00:00:00',
+				'start_unix_timestamp' => strtotime( '2025-02-20 00:00:00' ) - 8 * HOUR_IN_SECONDS,
+				'end_unix_timestamp'   => strtotime( '2025-02-22 00:00:00' ) - 8 * HOUR_IN_SECONDS,
 
 				'location' => array(
-					'location'  => 'Taipei, Taiwan',
-					'country'   => 'TW',
-					'latitude'  => 25.0333949,
-					'longitude' => 121.5661024,
+					'location'  => 'Manila, Philippines',
+					'country'   => 'PH',
+					'latitude'  => 14.5544983,
+					'longitude' => 120.9830332,
 				),
 			),
 		),
@@ -1305,6 +1307,16 @@ function maybe_add_regional_wordcamps( $local_events, $region_data, $user_agent,
 			if ( ! empty( $location['country'] ) && strtoupper( $data['event']['location']['country'] ) === strtoupper( $location['country'] ) ) {
 				$regional_wordcamps[] = $data['event'];
 			}
+		}
+
+		// Special case: Show WordCamp Asia to all of asia until it's over.
+		if (
+			'asia' === $region &&
+			! empty( $location['country'] ) &&
+			$current_time <= $data['event']['end_unix_timestamp'] &&
+			in_array( strtoupper( $location['country'] ), $data['regional_countries'], true )
+		) {
+			$regional_wordcamps[] = $data['event'];
 		}
 
 		// After the promo ends, the event will just be displayed to everyone in the normal search radius (2 weeks

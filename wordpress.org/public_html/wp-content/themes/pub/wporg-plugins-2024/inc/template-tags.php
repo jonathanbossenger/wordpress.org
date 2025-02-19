@@ -105,7 +105,8 @@ function the_author_byline( $post = null ) {
 	}
 
 	$url    = get_author_posts_url( $post->post_author ); 
-	$author = get_the_author();
+	$author = strip_tags( get_the_author_meta( 'display_name', $post->post_author ) ) ?: get_the_author();
+
 	$author = $url ? '<a class="url fn n" href="' . esc_url( $url ) . '">' . $author . '</a>' : $author;
 
 	/* translators: post author. */

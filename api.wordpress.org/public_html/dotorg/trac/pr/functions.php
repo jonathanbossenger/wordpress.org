@@ -400,7 +400,7 @@ function format_github_content_for_trac_comment( $desc ) {
 			 *
 			 * See https://trac.edgewall.org/wiki/1.1/WikiProcessors#AvailableProcessors
 			 */
-			$supported_formats = [ 'xml', 'php', 'js', 'javascript', 'sql', 'sh' ];
+			$supported_formats = [ 'xml', 'php', 'js', 'javascript', 'sql', 'sh', 'diff' ];
 			if ( ! in_array( $format, $supported_formats ) ) {
 				$format = 'default';
 			}

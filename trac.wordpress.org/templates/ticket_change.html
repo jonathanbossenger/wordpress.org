@@ -11,6 +11,21 @@ Arguments:
  - has_edit_comment=False: True if the user is allowed to edit all comments
  - preview=False: True if rendering a change preview
 -->
+<?python
+import re
+def wporg_wiki_to_html(context, wikidom, escape_newlines=None):
+
+	# Syntax highlight HTML blocks
+	wikidom = re.sub( r'{{{\s*#!html', '{{{#!xml \n HTML', wikidom, flags=re.IGNORECASE )
+
+	# Unsupported code types get converted to plaintext.
+	wikidom = re.sub( r'{{{\s*#!(?!xml|php|js|javascript|sql|sh|table|tr|th|td|diff)(\S+)\s', '{{{#!default \n \\1', wikidom, flags=re.IGNORECASE )
+
+	# Convert WikiMarkup.
+	wikidom = wiki_to_html( context, wikidom, escape_newlines)
+
+	return wikidom;
+?>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:py="http://genshi.edgewall.org/"
       xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -219,13 +234,13 @@ ${edited_comment if edited_comment is not None else change.comment}</textarea>
     <div py:when="str(cnum) == cnum_edit"
          py:with="text = edited_comment if edited_comment is not None else change.comment"
          class="comment searchable ticketdraft" style="${'display: none' if not text else None}" xml:space="preserve">
-      ${wiki_to_html(context, text, escape_newlines=preserve_newlines)}
+      ${wporg_wiki_to_html(context, text, escape_newlines=preserve_newlines)}
     </div>
     <div py:when="show_history" class="comment searchable" xml:space="preserve">
-      ${wiki_to_html(context, change.comment_history[int(cversion)].comment, escape_newlines=preserve_newlines)}
+      ${wporg_wiki_to_html(context, change.comment_history[int(cversion)].comment, escape_newlines=preserve_newlines)}
     </div>
     <div py:when="change.comment" class="comment searchable" xml:space="preserve">
-      ${wiki_to_html(context, change.comment, escape_newlines=preserve_newlines)}
+      ${wporg_wiki_to_html(context, change.comment, escape_newlines=preserve_newlines)}
     </div>
   </py:choose>
   <div py:if="not show_editor and len(change.comment_history) > 1" py:choose=""

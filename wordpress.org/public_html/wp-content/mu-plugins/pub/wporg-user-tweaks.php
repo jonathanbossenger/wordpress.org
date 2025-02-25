@@ -120,7 +120,7 @@ function maybe_replace_blocked_user_name( $name, $user ) {
 	}
 
 	// Check against the Support Forums if possible, additionally, check the site actually exists in this network.
-	if ( defined( 'WPORG_SUPPORT_FORUMS_BLOGID' ) && get_site( WPORG_SUPPORT_FORUMS_BLOGID ) ) {
+	if ( defined( 'WPORG_SUPPORT_FORUMS_BLOGID' ) && function_exists( 'get_site' ) && get_site( WPORG_SUPPORT_FORUMS_BLOGID ) ) {
 		$user->for_site( WPORG_SUPPORT_FORUMS_BLOGID );
 	}
 
